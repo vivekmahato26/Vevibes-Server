@@ -1,3 +1,10 @@
 const UserResolver = require("./user.resolver");
 
-exports.resolver =  UserResolver;
+module.exports = {
+    Query: {
+        ...UserResolver.Query
+    },
+    Mutation: {
+        ...UserResolver.Mutation
+    }
+}
