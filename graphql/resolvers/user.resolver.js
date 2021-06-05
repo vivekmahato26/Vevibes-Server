@@ -6,7 +6,18 @@ const verifyRef = db.collection("VerifyUser");
 
 module.exports = {
   Query: {
-    getUsers: async (_, args, context, info) => {},
+    getUsers: async (_, args, context, info) => {
+      const data = await userRef.get();
+      var res = [];
+      data.forEach((d) => {
+        var temp = {
+          id: d.id,
+          ...d
+        }
+        res.push(temp);
+      });
+      return res;
+    },
   },
   Mutation: {
     signUp: async (_, args, context, info) => {
