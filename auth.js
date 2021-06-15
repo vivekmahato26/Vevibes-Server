@@ -16,7 +16,7 @@ module.exports = (req, res, next) => {
     let decodedToken;
 
     try {
-        decodedToken = jwt.verify(token, "qwe!@#123RTY$%^zxc456ASD");
+        decodedToken = jwt.verify(token, "QWE123!@#rtyJKL789&*(jkl$%^");
     }
     catch (err) {
         req.isAuth = false;

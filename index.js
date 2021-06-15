@@ -9,6 +9,8 @@ admin.initializeApp({
 const typeDefs = require("./graphql/schema");
 const resolvers = require("./graphql/resolvers");
 
+const Auth = require("./auth");
+
 
 
 async function startApolloServer() {
@@ -24,6 +26,9 @@ async function startApolloServer() {
   await server.start();
 
   const app = express();
+
+  app.use(Auth);
+
   server.applyMiddleware({app, path: "/", cors: {
     // credentials: true,
     // origin: (origin,callback) => {
