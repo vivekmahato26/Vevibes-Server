@@ -66,7 +66,8 @@ module.exports = {
   },
   Mutation: {
     signUp: async (_, args, context, info) => {
-      const password = await bcrypt.hash(args.input.password, 8);
+      const salt = await bcrypt.genSalt(10);
+      const password = await bcrypt.hash(args.input.password, salt);
       const tempSnapshot = await userRef
         .where("email", "==", args.input.email)
         .get();
