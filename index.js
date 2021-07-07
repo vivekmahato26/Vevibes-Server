@@ -19,7 +19,8 @@ async function startApolloServer() {
     tracing: true,
     context: async ctx => {
       return ctx;
-    }
+    },
+    playground:true
   });
   await server.start();
 
