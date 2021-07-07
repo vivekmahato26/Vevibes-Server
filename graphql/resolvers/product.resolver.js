@@ -35,12 +35,12 @@ const dummyProduct = [
       "Cakes &amp; Tray Bakes",
     ],
     tags: ["Incredible Bakery"],
-    img: "https://vevibes.com/wp-content/uploads/2021/07/9EDEAE1EC15542E6B696932CA6E7F782.jpg",
+    img: ["https://vevibes.com/wp-content/uploads/2021/07/9EDEAE1EC15542E6B696932CA6E7F782.jpg"],
     allergen:
       "This product is gluten free, dairy free, egg free, soya free and vegan.",
   },
   {
-    Name: "Golden Linseed Loaf - 650g",
+    name: "Golden Linseed Loaf - 650g",
     featured: true,
     description:
       "Family size loaf for everyone to share. Perfect for sandwiches or toast",
@@ -70,12 +70,12 @@ const dummyProduct = [
       "Soy Free",
     ],
     tags: ["Incredible Bakery"],
-    img: "https://vevibes.com/wp-content/uploads/2021/07/F251626CD27448AAB490C25AAC604D72.jpg",
+    img: ["https://vevibes.com/wp-content/uploads/2021/07/F251626CD27448AAB490C25AAC604D72.jpg"],
     allergen:
       "This product is gluten free, dairy free, egg free, soya free and vegan",
   },
   {
-    Name: "GreenVie Block Greek Style 200g",
+    name: "GreenVie Block Greek Style 200g",
     featured: false,
     description:
       "Finally a tasty Vegan Feta that crumbles! GreenVie brings you a refreshing taste of Mediterranean flavour bites will have you craving for more. Use it like Feta you won't be disappointed!",
@@ -99,11 +99,11 @@ const dummyProduct = [
     price: 2.99,
     category: ["Food &amp; Drink", "Cheese Blocks", "Cheese", "Special Offers"],
     tags: ["Green Vie"],
-    img: "https://vevibes.com/wp-content/uploads/2021/07/greek.jpg",
+    img: ["https://vevibes.com/wp-content/uploads/2021/07/greek.jpg"],
     allergen: "This product is free from the main 14 allergens.",
   },
   {
-    Name: "Meetlyke Vegan Burger - 150g",
+    name: "Meetlyke Vegan Burger - 150g",
     featured: false,
     description:
       "The Meetlyke Vegan Burger with its fine hint of smokey taste can also be used as a steak. Served from the BBQ or from the pan, it makes every meal to a special experience!",
@@ -132,12 +132,12 @@ const dummyProduct = [
       "Plant-Based Alternatives",
     ],
     tags: ["Meetlyke"],
-    img: "https://vevibes.com/wp-content/uploads/2021/07/vegan_bruger.jpg",
+    img: ["https://vevibes.com/wp-content/uploads/2021/07/vegan_bruger.jpg"],
     allergen:
       "Contains WHEAT (GLUTEN). May contain traces of CELERY , MUSTARD , SOYA and LUPIN.",
   },
   {
-    Name: "Rolin Vegetarian Mock Chicken Meat 283g",
+    name: "Rolin Vegetarian Mock Chicken Meat 283g",
     featured: false,
     description:
       "Enjoy in a stir fry or marinated for extra flavour in your favourite dishes.",
@@ -163,11 +163,11 @@ const dummyProduct = [
       "Vegan Proteins",
     ],
     tags: ["Rolin"],
-    img: "https://vevibes.com/wp-content/uploads/2021/07/ED290E34571D42D3A2D5B0BE8F8A0ECC.jpg",
+    img: ["https://vevibes.com/wp-content/uploads/2021/07/ED290E34571D42D3A2D5B0BE8F8A0ECC.jpg"],
     allergen: " Contains gluten and soya",
   },
   {
-    Name: "Naturli - Vegan Block 200g",
+    name: "Naturli - Vegan Block 200g",
     featured: false,
     description:
       "Whether you melt it over hot sweetcorn, bake with it, toss your pasta in it, fry with it, spread it on your bread, add it to sauces, or cook your vegetables in it, you'll love this vegan butter!",
@@ -192,12 +192,12 @@ const dummyProduct = [
     category:
       "Food &amp; Drink > Dairy &amp; Egg Alternatives > Butter &amp; Spreads, Food &amp; Drink > Dairy &amp; Egg Alternatives",
     tags: ["Naturli"],
-    img: "https://vevibes.com/wp-content/uploads/2021/07/vegan_block.jpg",
+    img: ["https://vevibes.com/wp-content/uploads/2021/07/vegan_block.jpg"],
     allergen:
       "Contains ALMOND. May contain traces of HAZELNUT, CASHEW and PISTACHIO.",
   },
   {
-    Name: "Potato, Mushroom &amp; Spinach Pasty-6",
+    name: "Potato, Mushroom &amp; Spinach Pasty-6",
     featured: false,
     description:
       "Soft pastry filled with a delicious potatoes, mushroom, spinach and seasoning. It can be enjoyed cold or warm",
@@ -221,12 +221,12 @@ const dummyProduct = [
       "Panini's &amp; Pastries",
     ],
     tags: ["Incredible Bakery"],
-    img: "https://vevibes.com/wp-content/uploads/2021/07/443C6F85C2ED4F348E81B23974F048EB.jpg",
+    img: ["https://vevibes.com/wp-content/uploads/2021/07/443C6F85C2ED4F348E81B23974F048EB.jpg"],
     allergen:
       " This product is Gluten Free, Dairy Free, Egg Free, Soya Free &amp; Vegan.",
   },
   {
-    Name: "Sweets in the City Apple &amp; Watermelon Dual Pouch 50g",
+    name: "Sweets in the City Apple &amp; Watermelon Dual Pouch 50g",
     featured: false,
     description:
       "50g Apple &amp; Watermelon Duals offer a double taste sensation perfect for vegans and vegetarians. Made with a pectin jelly centre bursting to get out!",
@@ -249,7 +249,7 @@ const dummyProduct = [
     price: 1.72,
     category: ["Food &amp; Drink", "Snacks", "Sweet Treats"],
     tags: ["sweets in the city"],
-    img: "https://vevibes.com/wp-content/uploads/2021/07/sweets-2.jpg",
+    img: ["https://vevibes.com/wp-content/uploads/2021/07/sweets-2.jpg"],
   },
 ];
 

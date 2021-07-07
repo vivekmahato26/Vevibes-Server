@@ -10,7 +10,7 @@ module.exports = {
         tags: [String!]
         category: [String!]
         cupon: String
-        stock: Int!
+        stock: Int
         weightKG: Float
         ingredients: [String!]
         nutritionalValues: Nutrition
@@ -28,7 +28,7 @@ module.exports = {
         tags: [String!]
         category: [String!]
         cupon: String
-        stock: Int!
+        stock: Int
         weightKG: Float!
         ingredients: [String!]
         nutritionalValues: NutritionInput
