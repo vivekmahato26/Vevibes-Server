@@ -11,8 +11,6 @@ const resolvers = require("./graphql/resolvers");
 
 const Auth = require("./auth");
 
-
-
 async function startApolloServer() {
 
   const server = new ApolloServer({

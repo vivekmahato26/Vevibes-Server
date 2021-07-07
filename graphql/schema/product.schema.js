@@ -5,15 +5,19 @@ module.exports = {
         name: String!
         description: String!
         price: Float!
-        offerPrice: Float!
+        offerPrice: Float
         img: [String]
         tags: [String!]
-        category: String!
+        category: [String!]
         cupon: String
-        inventoryAmount: Int!
-        quantity: Float!
+        stock: Int!
+        weightKG: Float
         ingredients: [String!]
         nutritionalValues: Nutrition
+        allergen: String
+        disclaimer: String
+        featured: Boolean!
+        availabe: Boolean!
     }
     input ProductInput {
         name: String!
@@ -22,12 +26,15 @@ module.exports = {
         offerPrice: Float!
         img: [String]
         tags: [String!]
-        category: String!
+        category: [String!]
         cupon: String
-        inventoryAmount: Int!
-        quantity: Float!
+        stock: Int!
+        weightKG: Float!
         ingredients: [String!]
         nutritionalValues: NutritionInput
+        allergen: String
+        disclaimer: String
+        featured: Boolean!
     }
     type Nutrition {
         energy: Float
@@ -56,12 +63,15 @@ module.exports = {
         price: Float
         offerPrice: Float
         tags: [String]
-        category: String
+        category: [String]
         cupon: String
-        inventoryAmount: Int
-        quantity: Float
+        stock: Int
+        weightKG: Float
         ingredients: [String]
         nutritionalValues: NutritionInput
+        allergen: String
+        disclaimer: String
+        featured: Boolean
     }
     `,
   query: `
