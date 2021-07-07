@@ -20,7 +20,8 @@ async function startApolloServer() {
     context: async ctx => {
       return ctx;
     },
-    playground:true
+    playground:true,
+    introspection:true
   });
   await server.start();
 
