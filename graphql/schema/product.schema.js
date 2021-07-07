@@ -12,7 +12,7 @@ module.exports = {
         cupon: String
         stock: Int
         weightKG: Float
-        ingredients: [String!]
+        indregients: [String!]
         nutritionalValues: Nutrition
         allergen: String
         disclaimer: String
@@ -30,7 +30,7 @@ module.exports = {
         cupon: String
         stock: Int
         weightKG: Float!
-        ingredients: [String!]
+        indregients: [String!]
         nutritionalValues: NutritionInput
         allergen: String
         disclaimer: String
@@ -67,7 +67,7 @@ module.exports = {
         cupon: String
         stock: Int
         weightKG: Float
-        ingredients: [String]
+        indregients: [String]
         nutritionalValues: NutritionInput
         allergen: String
         disclaimer: String
