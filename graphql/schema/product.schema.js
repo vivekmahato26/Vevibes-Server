@@ -77,6 +77,7 @@ module.exports = {
   query: `
         getProducts: [Product]
         getProductFromID(productId: String!): Product
+        getFeaturedProducts: [Product]
     `,
   mutation: `
         addProduct(input:ProductInput): Product
