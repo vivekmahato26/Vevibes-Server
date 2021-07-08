@@ -29,36 +29,36 @@ module.exports = {
 
     type Address {
       id: ID!
-      house: String!
-      street: String!
-      locality: String
+      name: String!
+      address: String!
       landmark: String
       pin: String!
       city: String!
       state: String!
-      country: String!
+      mobile: String!
+      type: String!
     }
 
     input AddressInput {
-      house: String!
-      street: String!
-      locality: String
+      name: String!
+      address: String
       landmark: String
       pin: String!
       city: String!
       state: String!
-      country: String!
+      mobile: String!
+      type: String!
     }
 
     input AddressUpdate {
-      house: String
-      street: String
-      locality: String
+      name: String
+      address: String
       landmark: String
       pin: String
       city: String
       state: String
-      country: String
+      mobile: String
+      type: String!
     }
     
     `,
