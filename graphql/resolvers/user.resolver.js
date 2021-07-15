@@ -6,6 +6,7 @@ const db = admin.firestore();
 const userRef = db.collection("Users");
 const verifyRef = db.collection("VerifyUser");
 const addressRef = db.collection("Address");
+const productRef = db.collection("Products");
 
 const secret = "QWE123!@#rtyJKL789&*(jkl$%^";
 
@@ -59,6 +60,26 @@ module.exports = {
           });
           return res;
         });
+      } else {
+        throw new Error("Please Login!!!");
+      }
+    },
+    getUser: async (_, args, { req }, info) => {
+      if (req.isAuth) {
+        const data = await db.collection("Users").doc(req.userId).get();
+        return {
+          id: data.id,
+          ...data.data(),
+        };
+      } else {
+        throw new Error("Please Login!!!");
+      }
+    },
+    getWishlist: async (_, args, { req }, info) => {
+      if (req.isAuth) {
+        const data = await db.collection("Users").doc(req.userId).get();
+        const {wishlist} = data.data();
+        console.log(wishlist);
       } else {
         throw new Error("Please Login!!!");
       }
@@ -151,11 +172,37 @@ module.exports = {
           .update({
             address: admin.firestore.FieldValue.arrayRemove(args.addressId),
           });
-          return true;
+        return true;
       } else {
         throw new Error("Please Login!!!");
       }
     },
+    addToWishlist: async (_, args, { req }, info) => {
+      if (req.isAuth) {
+        const userUpdate = await db
+          .collection("Users")
+          .doc(req.userId)
+          .update({
+            wishlist: admin.firestore.FieldValue.arrayUnion(args.productId),
+          });
+        return true;
+      } else {
+        throw new Error("Please Login!!!");
+      }
+    },
+    removeFromWishlist: async (_, args, { req }, info) => {
+      if (req.isAuth) {
+        const userUpdate = await db
+          .collection("Users")
+          .doc(req.userId)
+          .update({
+            wishlist: admin.firestore.FieldValue.arrayRemove(args.productId),
+          });
+        return true;
+      } else {
+        throw new Error("Please Login!!!");
+      }
+    }
   },
   User: {
     address: async (parent) => {
@@ -174,5 +221,21 @@ module.exports = {
       }
       return res;
     },
+    wishlist: async (parent) => {
+      const res = [];
+      const wishlist = parent.wishlist;
+      for (var i = 0; i < wishlist.length; i++) {
+        const productSnapshot = await db
+          .collection("Products")
+          .doc(wishlist[i])
+          .get();
+        const productId = productSnapshot.id;
+        res.push({
+          id: productId,
+          ...productSnapshot.data(),
+        });
+      }
+      return res;
+    }
   },
 };

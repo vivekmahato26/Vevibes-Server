@@ -8,6 +8,7 @@ module.exports = {
       password: String!
       verified: Boolean!
       address: [Address]
+      wishlist: [Product]
     }
 
     input SignupInput {
@@ -66,6 +67,8 @@ module.exports = {
       getUsers: [User]
       signIn(input: SigninInput): Auth
       getAddress(userId: String!) : [Address]
+      getUser: User
+      getWishlist: [Product]
 `,
 mutation: `
     signUp(input: SignupInput): String!
@@ -74,5 +77,7 @@ mutation: `
     addAddress(input: AddressInput): Address
     updateAddress(input: AddressUpdate): Address
     deleteAddress(addressId: String!): Boolean!
+    addToWishlist(productId: String!) : Boolean!
+    removeFromWishlist(productId: String!): Boolean!
 `
 };
