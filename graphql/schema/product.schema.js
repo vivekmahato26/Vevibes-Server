@@ -5,7 +5,7 @@ module.exports = {
         name: String!
         description: String!
         price: Float!
-        offerPrice: Float
+        salePrice: Float
         img: [String]
         tags: [String!]
         category: [String!]
@@ -23,7 +23,7 @@ module.exports = {
         name: String!
         description: String!
         price: Float!
-        offerPrice: Float!
+        salePrice: Float!
         img: [String]
         tags: [String!]
         category: [String!]
