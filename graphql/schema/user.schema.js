@@ -31,8 +31,8 @@ module.exports = {
     type Address {
       id: ID!
       name: String!
-      address: String!
-      landmark: String
+      line1: String!
+      line2: String
       pin: String!
       city: String!
       state: String!
@@ -42,23 +42,12 @@ module.exports = {
 
     input AddressInput {
       name: String!
-      address: String
-      landmark: String
+      line1: String
+      line2: String
       pin: String!
       city: String!
       state: String!
       mobile: String!
-      type: String!
-    }
-
-    input AddressUpdate {
-      name: String
-      address: String
-      landmark: String
-      pin: String
-      city: String
-      state: String
-      mobile: String
       type: String!
     }
     
@@ -75,7 +64,7 @@ mutation: `
     verifyOTP(phone: String!,otp: Int!): Boolean!
     changePassword(password: String!): Boolean!
     addAddress(input: AddressInput): Address
-    updateAddress(input: AddressUpdate): Address
+    updateAddress(input: AddressInput): Address
     deleteAddress(addressId: String!): Boolean!
     addToWishlist(productId: String!) : Boolean!
     removeFromWishlist(productId: String!): Boolean!
