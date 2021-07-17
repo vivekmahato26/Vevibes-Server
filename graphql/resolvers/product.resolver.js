@@ -2,9 +2,10 @@ const admin = require("firebase-admin");
 
 const db = admin.firestore();
 const productRef = db.collection("Products");
+const userRef = db.collection("Users");
 
 const dummyProduct = [
-  
+
 ];
 
 module.exports = {
@@ -44,6 +45,20 @@ module.exports = {
       });
       return res;
     },
+    checkWishlisted: async (_, args, { req }, info) => {
+      if (req.isAuth) {
+        const userSnapshot = await db.collection("Users").doc(req.userId).get();
+        const userData = userSnapshot.data();
+        const index = userData.wishlist.findIndex((id) => id === args.productId);
+        if (index === -1) {
+          return { res: false };
+        } else {
+          return { res: true };
+        }
+      } else {
+        return { message: "Please Login!!!" }
+      }
+    }
   },
   Mutation: {
     addProduct: async (_, args, context, info) => {
@@ -76,4 +91,13 @@ module.exports = {
       return res;
     },
   },
+  WishlistedResult: {
+    __resolveType: (obj) => {
+      if (obj.message) {
+        return 'LoginError'
+      } else {
+        return 'Sucess'
+      }
+    }
+  }
 };

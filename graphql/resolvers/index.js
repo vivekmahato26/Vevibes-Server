@@ -19,5 +19,6 @@ module.exports = {
   User: UserResolver.User,
   Cart: CartResolver.Cart,
   CartItem: CartResolver.CartItem,
-  Order: OrderResolver.Order
+  Order: OrderResolver.Order,
+  WishlistedResult: ProductResolver.WishlistedResult
 };

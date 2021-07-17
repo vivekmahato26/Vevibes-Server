@@ -73,11 +73,19 @@ module.exports = {
         disclaimer: String
         featured: Boolean
     }
+    type LoginError {
+        message: String!
+      }
+    type Sucess {
+        res: Boolean!
+    }
+      union WishlistedResult = Sucess | LoginError
     `,
   query: `
         getProducts: [Product]
         getProductFromID(productId: String!): Product
         getFeaturedProducts: [Product]
+        checkWishlisted(productId: String!): WishlistedResult!
     `,
   mutation: `
         addProduct(input:ProductInput): Product
