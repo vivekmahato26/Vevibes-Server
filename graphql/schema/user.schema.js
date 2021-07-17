@@ -59,7 +59,7 @@ module.exports = {
   query: `
       getUsers: [User]
       signIn(input: SigninInput): Auth
-      getAddress(userId: String!) : [Address]
+      getAddress : [Address]
       getUser: User
       getWishlist: [Product]
 `,
