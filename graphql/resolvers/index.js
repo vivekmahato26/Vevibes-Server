@@ -20,5 +20,5 @@ module.exports = {
   Cart: CartResolver.Cart,
   CartItem: CartResolver.CartItem,
   Order: OrderResolver.Order,
-  WishlistedResult: ProductResolver.WishlistedResult
+  WishlistedResult: ProductResolver.WishlistedResult,
 };

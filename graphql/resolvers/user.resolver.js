@@ -79,7 +79,15 @@ module.exports = {
       if (req.isAuth) {
         const data = await db.collection("Users").doc(req.userId).get();
         const {wishlist} = data.data();
-        console.log(wishlist);
+        var res = [];
+        for (var i = 0; i <wishlist.length; i++) {
+          const productSnapshot = await db.collection("Products").doc(wishlist[i]).get();
+          res.push({
+            id: productSnapshot.id,
+            ...productSnapshot.data()
+          });
+        }
+        return res;
       } else {
         throw new Error("Please Login!!!");
       }
