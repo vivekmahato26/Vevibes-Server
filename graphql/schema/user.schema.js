@@ -38,6 +38,8 @@ module.exports = {
       state: String!
       mobile: String!
       type: String!
+      country: String!
+      countryCode: String!
     }
 
     input AddressInput {
@@ -49,6 +51,8 @@ module.exports = {
       state: String!
       mobile: String!
       type: String!
+      country: String!
+      countryCode: String!
     }
     
     `,
