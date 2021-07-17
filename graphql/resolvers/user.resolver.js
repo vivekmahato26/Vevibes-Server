@@ -52,14 +52,15 @@ module.exports = {
         const userData = userSnapshot.data();
         const addressId = userData.address;
         let res = [];
-        addressId.map(async (a) => {
-          const addressSnapshot = await db.collection("Address").doc(a).get();
+        for (var i = 0; i <addressId.length; i++) {
+          const addressSnapshot = await db.collection("Address").doc(addressId[i]).get();
           res.push({
             id: addressSnapshot.id,
             ...addressSnapshot.data(),
           });
-          return res;
-        });
+        }
+        console.log(res);
+        return res;
       } else {
         throw new Error("Please Login!!!");
       }
