@@ -29,6 +29,9 @@ module.exports = {
         .where("email", "==", args.input.email)
         .get();
       const userDoc = userSnapshot.docs.pop();
+      if(userSnapshot.empty()) {
+        throw new Error("Email not Registered!!!")
+      }
       const userId = userDoc.id;
       const userData = userDoc.data();
       const auth = await bcrypt.compareSync(
@@ -138,7 +141,7 @@ module.exports = {
     },
     changePassword: async (_, args, { req }, info) => {
       if (req.isAuth) {
-        let changed = false;
+        let changed = true;
         const password = await bcrypt.hash(args.password, 8);
         const updatePass = await db.collection("Users").doc(req.userId).update({
           password,
