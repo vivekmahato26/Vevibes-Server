@@ -25,7 +25,7 @@ module.exports = {
       return res;
     },
     signIn: async (_, args, context, info) => {
-      const email = args.input.email;
+      var email = args.input.email;
       email = email.toLowerCase();
       const userSnapshot = await userRef
         .where("email", "==", email)
@@ -109,7 +109,7 @@ module.exports = {
       if (!tempSnapshot.empty) {
         throw new Error("Email already exists!!!");
       }
-      const email = args.input.email;
+      var email = args.input.email;
       email = email.toLowerCase();
       const snapshot = await userRef.add({
         name: args.input.name,
