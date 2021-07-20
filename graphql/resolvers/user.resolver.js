@@ -29,7 +29,7 @@ module.exports = {
         .where("email", "==", args.input.email)
         .get();
       const userDoc = userSnapshot.docs.pop();
-      if(userSnapshot.empty()) {
+      if(userSnapshot.empty) {
         throw new Error("Email not Registered!!!")
       }
       const userId = userDoc.id;
