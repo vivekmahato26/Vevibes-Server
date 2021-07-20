@@ -25,8 +25,10 @@ module.exports = {
       return res;
     },
     signIn: async (_, args, context, info) => {
+      const email = args.input.email;
+      email = email.toLowerCase();
       const userSnapshot = await userRef
-        .where("email", "==", args.input.email)
+        .where("email", "==", email)
         .get();
       const userDoc = userSnapshot.docs.pop();
       if(userSnapshot.empty) {
@@ -107,9 +109,11 @@ module.exports = {
       if (!tempSnapshot.empty) {
         throw new Error("Email already exists!!!");
       }
+      const email = args.input.email;
+      email = email.toLowerCase();
       const snapshot = await userRef.add({
         name: args.input.name,
-        email: args.input.email,
+        email: email,
         password,
       });
       const userId = snapshot.id;
@@ -219,6 +223,9 @@ module.exports = {
   User: {
     address: async (parent) => {
       const res = [];
+      if(parent.address === undefined) {
+        return res;
+      }
       const address = parent.address;
       for (var i = 0; i < address.length; i++) {
         const addressSnapshot = await db
@@ -235,6 +242,9 @@ module.exports = {
     },
     wishlist: async (parent) => {
       const res = [];
+      if(parent.wishlist === undefined) {
+        return res;
+      }
       const wishlist = parent.wishlist;
       for (var i = 0; i < wishlist.length; i++) {
         const productSnapshot = await db
