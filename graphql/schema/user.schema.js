@@ -68,7 +68,7 @@ mutation: `
     verifyOTP(phone: String!,otp: Int!): Boolean!
     changePassword(password: String!): Boolean!
     addAddress(input: AddressInput): Address
-    updateAddress(input: AddressInput): Address
+    updateAddress(input: AddressInput,addressId: String!): Address
     deleteAddress(addressId: String!): Boolean!
     addToWishlist(productId: String!) : Boolean!
     removeFromWishlist(productId: String!): Boolean!

@@ -218,6 +218,16 @@ module.exports = {
       } else {
         throw new Error("Please Login!!!");
       }
+    },
+    updateAddress: async (_, args, { req }, info) => {
+      if (req.isAuth) {
+        const updateAddress = await db.collection("Address").doc(args.addressId).update({
+          ...args.input
+        })
+        return true;
+      } else {
+        throw new Error("Please Login!!!");
+      }
     }
   },
   User: {
