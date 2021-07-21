@@ -223,7 +223,7 @@ module.exports = {
       if (req.isAuth) {
         const updateAddress = await db.collection("Address").doc(args.addressId).update({
           ...args.input
-        })
+        });
         return true;
       } else {
         throw new Error("Please Login!!!");
