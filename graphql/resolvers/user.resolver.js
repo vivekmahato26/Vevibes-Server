@@ -6,7 +6,7 @@ const db = admin.firestore();
 const userRef = db.collection("Users");
 const verifyRef = db.collection("VerifyUser");
 const addressRef = db.collection("Address");
-const productRef = db.collection("Products");
+const cardRef = db.collection("Cards");
 
 const secret = "QWE123!@#rtyJKL789&*(jkl$%^";
 
@@ -98,6 +98,24 @@ module.exports = {
         throw new Error("Please Login!!!");
       }
     },
+    getCard: async (_, args,{ req},info) => {
+      if(req.isAuth){
+        const data = await db.collection("Users").doc(req.userId).get();
+        const cards = data.data();
+        var res = [];
+        for (var i = 0; i <cards.length; i++) {
+          const cardSnapshot = await db.collection("Cards").doc(cards[i]).get();
+          res.push({
+            id: cardSnapshot.id,
+            ...cardSnapshot.data()
+          });
+        }
+        return res;
+      }
+      else {
+        throw new Error("Please Login!!!")
+      }
+    }
   },
   Mutation: {
     signUp: async (_, args, context, info) => {
@@ -228,6 +246,44 @@ module.exports = {
       } else {
         throw new Error("Please Login!!!");
       }
+    },
+    addCard: async (_, args, { req }, info) => {
+      if (req.isAuth){
+        const newCard = await cardRef.add({
+          ...args.input
+        });
+        const cardSnapshot = await newCard.get();
+        const cardId = cardSnapshot.id;
+        const userUpdate = await db
+          .collection("Users")
+          .doc(req.userId)
+          .update({
+            cards: admin.firestore.FieldValue.arrayUnion(cardId),
+          });
+        return {
+          id: cardId,
+          ...cardSnapshot.data(),
+        };
+      } else {
+        throw new Error("Please Login!!!")
+      }
+    },
+    deleteCard: async (_, args, { req }, info) => {
+      if (req.isAuth) {
+        const deleteCard = await db
+          .collection("Cards")
+          .doc(args.cardId)
+          .delete();
+        const userUpdate = await db
+          .collection("Users")
+          .doc(req.userId)
+          .update({
+            cards: admin.firestore.FieldValue.arrayRemove(args.cardId),
+          });
+        return true;
+      } else {
+        throw new Error("Please Login!!!");
+      }
     }
   },
   User: {
@@ -265,6 +321,25 @@ module.exports = {
         res.push({
           id: productId,
           ...productSnapshot.data(),
+        });
+      }
+      return res;
+    },
+    cards: async (parent) => {
+      const res = [];
+      if(parent.cards === undefined) {
+        return res;
+      }
+      const cards = parent.cards;
+      for (var i = 0; i < cards.length; i++) {
+        const cardSnapshot = await db
+          .collection("Cards")
+          .doc(cards[i])
+          .get();
+        const cardId = cardSnapshot.id;
+        res.push({
+          id: cardId,
+          ...cardSnapshot.data(),
         });
       }
       return res;

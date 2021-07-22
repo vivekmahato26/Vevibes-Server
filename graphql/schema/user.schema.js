@@ -9,6 +9,7 @@ module.exports = {
       verified: Boolean!
       address: [Address]
       wishlist: [Product]
+      cards: [Card]
     }
 
     input SignupInput {
@@ -54,6 +55,19 @@ module.exports = {
       country: String!
       countryCode: String!
     }
+
+    type Card {
+      id: String!
+      number: String!
+      name: String!
+      expires: String!
+    }
+
+    input CardInput {
+      number: String!
+      name: String!
+      expires: String!
+    }
     
     `,
   query: `
@@ -62,8 +76,11 @@ module.exports = {
       getAddress : [Address]
       getUser: User
       getWishlist: [Product]
+      getCards: [Card]
 `,
-mutation: `
+  mutation: `
+    addCard(input:CardInput): Card!
+    deleteCard(cardId: String!): Boolean!
     signUp(input: SignupInput): String!
     verifyOTP(phone: String!,otp: Int!): Boolean!
     changePassword(password: String!): Boolean!
