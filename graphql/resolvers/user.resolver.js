@@ -263,7 +263,8 @@ module.exports = {
         });
         const newCard = await cardRef.add({
           ...args.input,
-          fingerprint: paymentMethod.fingerprint
+          fingerprint: paymentMethod.fingerprint,
+          brand: paymentMethod.brand,
         });
         const cardSnapshot = await newCard.get();
         const cardId = cardSnapshot.id;

@@ -62,6 +62,7 @@ module.exports = {
       name: String!
       expires: String!
       fingerprint: String!
+      brand: String!
     }
 
     input CardInput {
