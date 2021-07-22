@@ -103,7 +103,7 @@ module.exports = {
     getCards: async (_, args,{ req},info) => {
       if(req.isAuth){
         const data = await db.collection("Users").doc(req.userId).get();
-        const cards = data.data();
+        const {cards} = data.data();
         var res = [];
         for (var i = 0; i <cards.length; i++) {
           const cardSnapshot = await db.collection("Cards").doc(cards[i]).get();
@@ -111,6 +111,7 @@ module.exports = {
             id: cardSnapshot.id,
             ...cardSnapshot.data()
           });
+          console.log(res);
         }
         return res;
       }
