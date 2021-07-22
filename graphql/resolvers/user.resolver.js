@@ -252,7 +252,6 @@ module.exports = {
     addCard: async (_, args, { req }, info) => {
       if (req.isAuth){
         const exp = args.input.expires;
-
         const paymentMethod = await stripe.paymentMethods.create({
           type: 'card',
           card: {
@@ -261,6 +260,10 @@ module.exports = {
             exp_year: exp.split("/")[1],
           },
         });
+        const cardsSnapshot = await cardRef.where("fingerprint","==",paymentMethod.card.fingerprint).get();
+        if(!cardsSnapshot.empty) {
+          throw new Error("Card Already Added!!!")
+        }
         const newCard = await cardRef.add({
           ...args.input,
           fingerprint: paymentMethod.card.fingerprint,
