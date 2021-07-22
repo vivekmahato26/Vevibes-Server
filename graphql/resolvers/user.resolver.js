@@ -2,6 +2,8 @@ const admin = require("firebase-admin");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const stripe = require("../../stripe");
+
 const db = admin.firestore();
 const userRef = db.collection("Users");
 const verifyRef = db.collection("VerifyUser");
@@ -249,8 +251,19 @@ module.exports = {
     },
     addCard: async (_, args, { req }, info) => {
       if (req.isAuth){
+        const exp = args.input.expires;
+
+        const paymentMethod = await stripe.paymentMethods.create({
+          type: 'card',
+          card: {
+            number: args.input.number,
+            exp_month: exp.split("/")[0],
+            exp_year: exp.split("/")[1],
+          },
+        });
         const newCard = await cardRef.add({
-          ...args.input
+          ...args.input,
+          fingerprint: paymentMethod.fingerprint
         });
         const cardSnapshot = await newCard.get();
         const cardId = cardSnapshot.id;
