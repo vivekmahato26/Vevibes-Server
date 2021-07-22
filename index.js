@@ -1,6 +1,7 @@
 const { ApolloServer } = require("apollo-server-express");
 const express = require("express");
 
+
 const serviceAccount = require("./vevibes-server-firebase-adminsdk-ys9yu-c397f29b60.json");
 const admin = require("firebase-admin");
 admin.initializeApp({
@@ -11,7 +12,18 @@ const resolvers = require("./graphql/resolvers");
 
 const Auth = require("./auth");
 
+const stripe = require("./stripe");
+
 async function startApolloServer() {
+
+  // const charge = await stripe.charges.create({
+  //   amount: 999,
+  //   currency: 'usd',
+  //   description: 'Example charge',
+  //   source: "tok_1JFvNqSHVA8HGx9raYNtouI6",
+  // });
+  
+  // console.log(charge);
 
   const server = new ApolloServer({
     typeDefs,

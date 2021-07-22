@@ -98,7 +98,7 @@ module.exports = {
         throw new Error("Please Login!!!");
       }
     },
-    getCard: async (_, args,{ req},info) => {
+    getCards: async (_, args,{ req},info) => {
       if(req.isAuth){
         const data = await db.collection("Users").doc(req.userId).get();
         const cards = data.data();
