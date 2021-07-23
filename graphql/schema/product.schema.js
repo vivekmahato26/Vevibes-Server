@@ -8,7 +8,6 @@ module.exports = {
         salePrice: Float
         img: [String]
         tags: [String!]
-        category: [String!]
         cupon: String
         stock: Int
         weightKG: Float
@@ -18,6 +17,8 @@ module.exports = {
         disclaimer: String
         featured: Boolean!
         availabe: Boolean!
+        category: [String!]
+        subCategory: [String!]
     }
     input ProductInput {
         name: String!
@@ -26,7 +27,6 @@ module.exports = {
         salePrice: Float!
         img: [String]
         tags: [String!]
-        category: [String!]
         cupon: String
         stock: Int
         weightKG: Float!
@@ -35,6 +35,8 @@ module.exports = {
         allergen: String
         disclaimer: String
         featured: Boolean!
+        category: [String!]
+        subCategory: [String!]
     }
     type Nutrition {
         energy: Float

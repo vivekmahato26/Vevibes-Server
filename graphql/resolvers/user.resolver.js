@@ -111,7 +111,6 @@ module.exports = {
             id: cardSnapshot.id,
             ...cardSnapshot.data()
           });
-          console.log(res);
         }
         return res;
       }

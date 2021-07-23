@@ -20,10 +20,10 @@ async function startApolloServer() {
   //   amount: 999,
   //   currency: 'usd',
   //   description: 'Example charge',
-  //   source: "tok_1JFwiTSHVA8HGx9rmrXVGgVg",
+  //   source: "tok_1JGLNhSHVA8HGx9rT01oHOQb",
   // });
   
-  //console.log(charge);
+  // console.log(charge);
 
   const server = new ApolloServer({
     typeDefs,

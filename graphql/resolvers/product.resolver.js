@@ -2,11 +2,6 @@ const admin = require("firebase-admin");
 
 const db = admin.firestore();
 const productRef = db.collection("Products");
-const userRef = db.collection("Users");
-
-const dummyProduct = [
-
-];
 
 module.exports = {
   Query: {
