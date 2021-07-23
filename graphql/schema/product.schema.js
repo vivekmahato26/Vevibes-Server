@@ -18,7 +18,7 @@ module.exports = {
         featured: Boolean!
         availabe: Boolean!
         category: [String!]
-        subCategory: [String!]
+        subCategory: [String]
     }
     input ProductInput {
         name: String!
@@ -36,7 +36,7 @@ module.exports = {
         disclaimer: String
         featured: Boolean!
         category: [String!]
-        subCategory: [String!]
+        subCategory: [String]
     }
     type Nutrition {
         energy: Float
