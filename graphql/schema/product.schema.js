@@ -17,8 +17,9 @@ module.exports = {
         disclaimer: String
         featured: Boolean!
         availabe: Boolean!
-        category: [String!]
+        category: String!
         subCategory: [String]
+        createdAt: String!
     }
     input ProductInput {
         name: String!
@@ -35,8 +36,9 @@ module.exports = {
         allergen: String
         disclaimer: String
         featured: Boolean!
-        category: [String!]
+        category: String!
         subCategory: [String]
+        createdAt: String!
     }
     type Nutrition {
         energy: Float
