@@ -1,2 +1,2 @@
 const stripe = require("stripe");
-module.exports =  stripe("sk_test_51IvlSmSHVA8HGx9rjIyhIaizd4LxUf8cwazrZWaoCh2PfvaRk80Oi0Yh7PA8omhcN9hIGZXknonh5UwsDa4FD7Wi00Cmrd86MZ");
+module.exports =  stripe("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");

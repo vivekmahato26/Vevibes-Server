@@ -97,7 +97,7 @@ module.exports = {
         } else {
           var customer = await stripe.customers.create({
             name: userData.name,
-            address: userData.address,
+            address: userData.address[0],
             email: userData.email,
             phone: userData.phone,
           });
@@ -106,6 +106,8 @@ module.exports = {
             stripeId:customerId
           });
         }
+        console.log(args);
+        console.log(customerId);
         const paymentIntent = await stripe.paymentIntents.create({
           customer: customerId,
           amount: args.amount,
