@@ -98,6 +98,9 @@ module.exports = {
             address: userData.address,
           });
           customerId = customer.id
+          const userUpdate = await db.collection("Users").doc(req.userId).update({
+            stripeId:customerId
+          });
         }
         const paymentIntent = await stripe.paymentIntents.create({
           customer: customerId,
