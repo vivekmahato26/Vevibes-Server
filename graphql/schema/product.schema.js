@@ -94,7 +94,7 @@ module.exports = {
   mutation: `
         addProduct(input:ProductInput): Product
         updateProduct(productId: String!,updates:ProductUpdate):Product
-        checkout(amout: Float!,currency: String!,description: String!,paymentMethod: String!) : String!
+        checkout(amount: Float!,currency: String!,description: String!,paymentMethod: String!) : String!
     `,
    
 };
