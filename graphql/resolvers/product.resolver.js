@@ -85,6 +85,32 @@ module.exports = {
       };
       return res;
     },
+    checkout: async (_, args, { req }, info) => {
+      if (req.isAuth) {
+        const userSnapshot = await db.collection("Users").doc(req.userId).get();
+        const userData = userSnapshot.data();
+        let customerId;
+        if(userData.stripeId) {
+          customerId = userData.stripeId;
+        } else {
+          var customer = await stripe.customers.create({
+            name: userData.name,
+            address: userData.address,
+          });
+          customerId = customer.id
+        }
+        const paymentIntent = await stripe.paymentIntents.create({
+          customer: customerId,
+          amount: args.amount,
+          currency: args.currency,
+          payment_method_types: args.paymentMethod,
+          description: args.description,
+        });
+        return paymentIntent.client_secret;
+      } else {
+        throw new Error("Please Login!!!")
+      }
+    }
   },
   WishlistedResult: {
     __resolveType: (obj) => {

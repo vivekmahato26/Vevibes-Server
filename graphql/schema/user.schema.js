@@ -10,6 +10,7 @@ module.exports = {
       address: [Address]
       wishlist: [Product]
       cards: [Card]
+      stripeId: String!
     }
 
     input SignupInput {

@@ -16,15 +16,6 @@ const stripe = require("./stripe");
 
 async function startApolloServer() {
 
-  // const charge = await stripe.charges.create({
-  //   amount: 999,
-  //   currency: 'usd',
-  //   description: 'Example charge',
-  //   source: "tok_1JGLNhSHVA8HGx9rT01oHOQb",
-  // });
-  
-  // console.log(charge);
-
   const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -32,8 +23,8 @@ async function startApolloServer() {
     context: async ctx => {
       return ctx;
     },
-    playground:true,
-    introspection:true
+    playground: true,
+    introspection: true
   });
   await server.start();
 
@@ -41,24 +32,26 @@ async function startApolloServer() {
 
   app.use(Auth);
 
-  server.applyMiddleware({app, path: "/", cors: {
-    // credentials: true,
-    // origin: (origin,callback) => {
-    //   const whitelist = [
-    //     "https://vebibes.com",
-    //     "https://cms.vevibes.com",
-    //     "https://app.vevibes.com"
-    //   ];
-    //   if(whitelist.indexOf(origin) !== -1) {
-    //     callback(null,true);
-    //   } else {
-    //     console.log(origin);
-    //     callback(new Error("Blocked By CORS"))
-    //   }
-    // }
-  }});
+  server.applyMiddleware({
+    app, path: "/", cors: {
+      // credentials: true,
+      // origin: (origin,callback) => {
+      //   const whitelist = [
+      //     "https://vebibes.com",
+      //     "https://cms.vevibes.com",
+      //     "https://app.vevibes.com"
+      //   ];
+      //   if(whitelist.indexOf(origin) !== -1) {
+      //     callback(null,true);
+      //   } else {
+      //     console.log(origin);
+      //     callback(new Error("Blocked By CORS"))
+      //   }
+      // }
+    }
+  });
 
-  await new Promise(resolve => app.listen({ port: process.env.PORT ||4000 }, resolve));
+  await new Promise(resolve => app.listen({ port: process.env.PORT || 4000 }, resolve));
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
   return { server, app };
 }
