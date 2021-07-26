@@ -96,6 +96,8 @@ module.exports = {
           var customer = await stripe.customers.create({
             name: userData.name,
             address: userData.address,
+            email: userData.email,
+            phone: userData.phone,
           });
           customerId = customer.id
           const userUpdate = await db.collection("Users").doc(req.userId).update({
