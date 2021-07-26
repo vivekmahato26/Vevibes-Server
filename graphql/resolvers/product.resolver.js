@@ -91,13 +91,21 @@ module.exports = {
       if (req.isAuth) {
         const userSnapshot = await db.collection("Users").doc(req.userId).get();
         const userData = userSnapshot.data();
+        const addressSnapshot = await db.collection("Address").doc(userData.address[0]).get();
+        const addressData = addressSnapshot.data();
         let customerId;
         if(userData.stripeId) {
           customerId = userData.stripeId;
         } else {
           var customer = await stripe.customers.create({
             name: userData.name,
-            address: userData.address[0],
+            address: {
+              line1: addressData.line1,
+              postal_code: addressData.pin,
+              city: addressData.city,
+              state: addressData.state,
+              country: addressData.countryCode,
+            },
             email: userData.email,
             phone: userData.phone,
           });
