@@ -3,6 +3,8 @@ const admin = require("firebase-admin");
 const db = admin.firestore();
 const productRef = db.collection("Products");
 
+const stripe = require("../../stripe");
+
 module.exports = {
   Query: {
     getProducts: async (_, args, context, info) => {
