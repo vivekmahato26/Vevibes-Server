@@ -45,7 +45,7 @@ module.exports = {
         fat: Float
         saturatedFat: Float
         carbohydrates: Float
-        protine: Float
+        protien: Float
         sugar: Float
         fiber: Float
         salt: Float
