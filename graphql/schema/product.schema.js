@@ -16,7 +16,6 @@ module.exports = {
         allergen: String
         disclaimer: String
         featured: Boolean!
-        availabe: Boolean!
         category: String!
         subCategory: [String]
         createdAt: String!
