@@ -260,9 +260,14 @@ module.exports = {
             exp_year: exp.split("/")[1],
           },
         });
-        const cardsSnapshot = await cardRef.where("fingerprint","==",paymentMethod.card.fingerprint).get();
-        if(!cardsSnapshot.empty) {
-          throw new Error("Card Already Added!!!")
+        const userSnapshot = await db.collection("Users").doc(req.userId).get();
+        const {cards} = userSnapshot.data();
+        for (var i = 0; i <cards.length; i++) {
+          const cardSnapshot = await db.collection("Cards").doc(cards[i]).get();
+          const {fingerprint} = cardSnapshot.data();
+          if(paymentMethod.fingerprint === fingerprint) {
+            throw new Error("Card Already Added!!!")
+          }
         }
         const newCard = await cardRef.add({
           ...args.input,

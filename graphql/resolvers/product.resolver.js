@@ -114,8 +114,6 @@ module.exports = {
             stripeId:customerId
           });
         }
-        console.log(args);
-        console.log(customerId);
         const paymentIntent = await stripe.paymentIntents.create({
           customer: customerId,
           amount: args.amount,

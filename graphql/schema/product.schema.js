@@ -8,10 +8,10 @@ module.exports = {
         salePrice: Float
         img: [String]
         tags: [String!]
-        cupon: String
+        coupon: String
         stock: Int
         weightKG: Float
-        indregients: [String!]
+        ingerdients: [String!]
         nutritionalValues: Nutrition
         allergen: String
         disclaimer: String
@@ -28,10 +28,10 @@ module.exports = {
         salePrice: Float!
         img: [String]
         tags: [String!]
-        cupon: String
+        coupon: String
         stock: Int
         weightKG: Float!
-        indregients: [String!]
+        ingerdients: [String!]
         nutritionalValues: NutritionInput
         allergen: String
         disclaimer: String
@@ -68,10 +68,10 @@ module.exports = {
         offerPrice: Float
         tags: [String]
         category: [String]
-        cupon: String
+        coupon: String
         stock: Int
         weightKG: Float
-        indregients: [String]
+        ingerdients: [String]
         nutritionalValues: NutritionInput
         allergen: String
         disclaimer: String
