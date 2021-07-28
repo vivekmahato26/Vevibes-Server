@@ -12,7 +12,6 @@ const resolvers = require("./graphql/resolvers");
 
 const Auth = require("./auth");
 
-const stripe = require("./stripe");
 
 async function startApolloServer() {
 

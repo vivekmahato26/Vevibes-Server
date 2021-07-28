@@ -8,7 +8,6 @@ module.exports = {
             createdAt: String!
             status: String!
             shipping: String
-            created: String!
             payment: Payment!
             paymentStatus: Boolean!
         }
