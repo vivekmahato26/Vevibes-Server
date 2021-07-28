@@ -1,0 +1,515 @@
+{
+  "__collections__": {
+    "Address": {
+      "4LMnwIdjOGqz3xFVxHNS": {
+        "type": "office",
+        "name": "test office",
+        "line1": "Sheela Nagar",
+        "line2": null,
+        "pin": "530012",
+        "country": "India",
+        "city": "Visakhapatnam",
+        "state": "Andhra Pradesh",
+        "mobile": "354546",
+        "countryCode": "IN",
+        "__collections__": {}
+      },
+      "6ufT3q72xEI96Fow5Ggs": {
+        "mobile": "354546",
+        "pin": "530012",
+        "name": "test office",
+        "line1": "3534564",
+        "city": "Visakhapatnam",
+        "type": "office",
+        "countryCode": "IN",
+        "state": "Andhra Pradesh",
+        "country": "India",
+        "line2": null,
+        "__collections__": {}
+      },
+      "DaUhm4H8m6EZoN50mI8F": {
+        "mobile": "354546",
+        "pin": "530012",
+        "type": "office",
+        "name": "test office",
+        "state": "Andhra Pradesh",
+        "city": "Visakhapatnam",
+        "country": "India",
+        "line1": "3534564",
+        "line2": null,
+        "countryCode": "IN",
+        "__collections__": {}
+      },
+      "GjcAAUPeKPkXnLJMGO5O": {
+        "mobile": "ASDA",
+        "type": "Office",
+        "country": "India",
+        "pin": "530012",
+        "state": "Andhra Pradesh",
+        "name": "TEST 4",
+        "city": "Visakhapatnam",
+        "countryCode": "IN",
+        "line1": "DASDAD",
+        "__collections__": {}
+      },
+      "Gn8sCucvT36FUycs7DQI": {
+        "city": "Visakhapatnam",
+        "line1": "sheelanagar",
+        "state": "Andhra Pradesh",
+        "name": "Office ",
+        "line2": "",
+        "countryCode": "IN",
+        "country": "India",
+        "mobile": "8303894559",
+        "type": "Office",
+        "pin": "530012",
+        "__collections__": {}
+      },
+      "LMSLfy604hYWq6p5dJ6Z": {
+        "line1": "3534564",
+        "mobile": "354546",
+        "countryCode": "IN",
+        "type": "office",
+        "pin": "530012",
+        "line2": null,
+        "state": "Andhra Pradesh",
+        "city": "Visakhapatnam",
+        "name": "test office",
+        "country": "India",
+        "__collections__": {}
+      },
+      "PPb1o7AVnJ8ss40VA5y6": {
+        "state": "Andhra Pradesh",
+        "mobile": "21212",
+        "pin": "530012",
+        "line1": "1212",
+        "type": "Office",
+        "city": "Visakhapatnam",
+        "name": "teststse",
+        "countryCode": "IN",
+        "country": "India",
+        "__collections__": {}
+      },
+      "bXxC9drXWyQHVVCI0vza": {
+        "name": "test 3",
+        "country": "India",
+        "countryCode": "IN",
+        "state": "Andhra Pradesh",
+        "mobile": "asAS",
+        "type": "Office",
+        "pin": "530012",
+        "line1": "sAS",
+        "city": "Visakhapatnam",
+        "__collections__": {}
+      },
+      "lMwcefbPdDPc7JUhE1J8": {
+        "line2": null,
+        "pin": "530012",
+        "line1": "3534564",
+        "name": "test office",
+        "city": "Visakhapatnam",
+        "state": "Andhra Pradesh",
+        "country": "India",
+        "type": "office",
+        "countryCode": "IN",
+        "mobile": "354546",
+        "__collections__": {}
+      },
+      "m2OlQI766hI0f6gAXHMg": {
+        "city": "Birmingham",
+        "country": "United Kingdom",
+        "countryCode": "GB",
+        "state": "England",
+        "mobile": "testsetset",
+        "name": "test UK",
+        "line1": "test",
+        "line2": "test",
+        "type": "Office",
+        "pin": "b449qr",
+        "__collections__": {}
+      },
+      "pYEBOo6r5T34GPmkUmzW": {
+        "line2": "",
+        "mobile": "8303894559",
+        "line1": "Sheelanagar",
+        "type": "Office",
+        "countryCode": "IN",
+        "name": "Vivek",
+        "state": "Andhra Pradesh",
+        "country": "India",
+        "pin": "530012",
+        "city": "Visakhapatnam",
+        "__collections__": {}
+      },
+      "q2jWtlesCnvDWfyAnZIJ": {
+        "mobile": "45645646",
+        "type": "Office",
+        "pin": "470006",
+        "city": "Varanasi",
+        "name": "Vivek 2",
+        "country": "Colombia",
+        "line2": "test",
+        "state": "Magdalena",
+        "countryCode": "CO",
+        "line1": "test",
+        "__collections__": {}
+      },
+      "tUdGG0tlqdLbK8bXMGbe": {
+        "line2": "KIMS",
+        "city": "Visakhapatnam",
+        "name": "Vivek Mahato",
+        "country": "India",
+        "countryCode": "IN",
+        "mobile": "8303894559",
+        "state": "Andhra Pradesh",
+        "line1": "Sheela nagar",
+        "type": "Office",
+        "pin": "530001",
+        "__collections__": {}
+      }
+    },
+    "Cards": {
+      "6FwxLwL024VHLihHNqyk": {
+        "expires": "10/21",
+        "name": "Sanyam Jain",
+        "number": "4788936373788178",
+        "brand": "visa",
+        "fingerprint": "ldpmcKeFTp5Omz1q",
+        "__collections__": {}
+      },
+      "86cvamrbh3yJnYMeQ0MC": {
+        "name": "test",
+        "fingerprint": "qNTOhqIeGVA2REps",
+        "brand": "visa",
+        "number": "4000056655665556",
+        "expires": "04/58",
+        "__collections__": {}
+      },
+      "BnBCdqEIX3ke7V1NQBBE": {
+        "brand": "visa",
+        "name": "3DS",
+        "fingerprint": "QbUDIyEoluSBBmfe",
+        "number": "4000000000003220",
+        "expires": "12/22",
+        "__collections__": {}
+      },
+      "BzhwrzEbMpTFA2q30QQt": {
+        "name": "vivek mahato",
+        "brand": "visa",
+        "number": "4687792724030493",
+        "expires": "12/22",
+        "fingerprint": "qUtCdpB8t1ZT9AOH",
+        "__collections__": {}
+      },
+      "MDu4KBZIPeFOJjNOMqoe": {
+        "name": "test office",
+        "number": "4242424242424242",
+        "brand": "visa",
+        "expires": "02/22",
+        "fingerprint": "UOkA37JS6pp0Stm4",
+        "__collections__": {}
+      },
+      "emDwgHTWmMqXlqpXeJ4c": {
+        "brand": "visa",
+        "name": "3DS2",
+        "fingerprint": "wIVjDtzZBLUkIbye",
+        "number": "4000000000003063",
+        "expires": "04/54",
+        "__collections__": {}
+      },
+      "ryuGyW4bqG7gDyFGm5fn": {
+        "number": "5200828282828210",
+        "brand": "mastercard",
+        "expires": "04/54",
+        "fingerprint": "U7PDMZQlnkmm747W",
+        "name": "fgdgd",
+        "__collections__": {}
+      }
+    },
+    "Products": {
+      "2i2Q8AmzdeKGBIGSg2pI": {
+        "description": "50g Apple & Watermelon Duals offer a double taste sensation perfect for vegans and vegetarians. Made with a pectin jelly center bursting to get out!",
+        "img": [
+          "https://vevibes.com/wp-content/uploads/2021/07/sweets-2.jpg"
+        ],
+        "stock": null,
+        "category": [
+          "Food & Drink",
+          "Snacks",
+          "Sweet Treats"
+        ],
+        "featured": true,
+        "name": "Sweets in the City Apple & Watermelon Dual Pouch 50g",
+        "tags": [
+          "sweets in the city"
+        ],
+        "salePrice": null,
+        "price": 1.72,
+        "ingredients": [
+          "Glucose syrup",
+          "sugar",
+          "dextrose",
+          "6% apple juice from concentrate",
+          "modified tapioca starch",
+          "modified potato starch",
+          "acids: citric acid,malic acid,fruit",
+          "vegetable concentrates: spirulina ,safflower,carrot,blackcurrant",
+          "acidity regulator: sodium citrates ,sodium malates? ,invert sugar syrup,hydrolysed rice protein",
+          "gelling agent: pectins flavourings potato protein."
+        ],
+        "available": false,
+        "weightKG": null,
+        "__collections__": {}
+      },
+      "W42eThV8fHSBHkffxr6P": {
+        "price": 3.95,
+        "weightKG": 0.65,
+        "img": [
+          "https://vevibes.com/wp-content/uploads/2021/07/F251626CD27448AAB490C25AAC604D72.jpg"
+        ],
+        "description": "Family size loaf for everyone to share. Perfect for sandwiches or toast",
+        "tags": [
+          "Incredible Bakery"
+        ],
+        "ingredients": [
+          "Water",
+          "gram flour",
+          "white and brown rice flour",
+          "potato starch",
+          "tapioca starch",
+          "golden linseed (14%)",
+          "cold pressed rapeseed oil",
+          "stabiliser: xanthan gum",
+          "raising agent: yeast, psyllium husk",
+          "unrefined sugar and sea salt."
+        ],
+        "featured": true,
+        "name": "Golden Linseed Loaf - 650g",
+        "category": [
+          "Food  Drink",
+          "Bakery & Cakes",
+          "Bread & Rolls",
+          "Dietary",
+          "Gluten Free",
+          "Soy Free"
+        ],
+        "stock": 8,
+        "allergen": "This product is gluten free, dairy free, egg free, soya free and vegan",
+        "salePrice": 2.95,
+        "available": true,
+        "__collections__": {}
+      },
+      "X384B1ellxhzCOvVLihP": {
+        "allergen": " This product is Gluten Free, Dairy Free, Egg Free, Soya Free & Vegan.",
+        "description": "Soft pastry filled with a delicious potatoes, mushroom, spinach and seasoning. It can be enjoyed cold or warm",
+        "available": true,
+        "price": 18,
+        "tags": [
+          "Incredible Bakery"
+        ],
+        "featured": false,
+        "salePrice": null,
+        "ingredients": [
+          "Pastry: Water, white rice flour, brown rice flour, tapioca starch",
+          "potato starch",
+          "golden linseed",
+          "cold pressed rapeseed oil",
+          "vegan spread:(sunflower oil* (50%), palm oil*, water, coconut oil*, carrot juice*, sunflower, lecithin, lemon juice*)",
+          "raising agent: yeast, salt, vegetable fibre, unrefined sugar, xanthan gum",
+          "Filling: Potatoes, Mushrooms, Spinach, Rapeseed Oil, seasoning (cornflour, potato starch, salt, flavourings, onion powder, palm oil, sugar, garlic powder, ground turmeric)."
+        ],
+        "category": [
+          "Food & Drink",
+          "Bakery & Cakes",
+          "Panini's & Pastries"
+        ],
+        "img": [
+          "https://vevibes.com/wp-content/uploads/2021/07/443C6F85C2ED4F348E81B23974F048EB.jpg"
+        ],
+        "name": "Potato, Mushroom & Spinach Pasty-6",
+        "weightKG": null,
+        "stock": null,
+        "__collections__": {}
+      },
+      "ZG39hF0BibZwzOd4QElz": {
+        "featured": false,
+        "salePrice": 2.8,
+        "ingredients": [
+          "Water",
+          "Coconut Oil (25%)",
+          " Starch",
+          "Modified Starch*",
+          "Potato Protein",
+          "Sea Salt",
+          "Acidity Regulator: Lactic Acid (Non-dairy)",
+          "Vegan Flavourings",
+          "Olive Extract",
+          "Vitamin B12",
+          "*Not to be confused with GMO (Genetically Modified) ingredients."
+        ],
+        "category": [
+          "Food & Drink",
+          "Cheese Blocks",
+          "Cheese",
+          "Special Offers"
+        ],
+        "allergen": "This product is free from the main 14 allergens.",
+        "available": true,
+        "price": 2.99,
+        "img": [
+          "https://vevibes.com/wp-content/uploads/2021/07/greek.jpg"
+        ],
+        "tags": [
+          "Green Vie"
+        ],
+        "description": "Finally a tasty Vegan Feta that crumbles! GreenVie brings you a refreshing taste of Mediterranean flavour bites will have you craving for more. Use it like Feta you won't be disappointed!",
+        "stock": 5,
+        "name": "GreenVie Block Greek Style 200g",
+        "weightKG": 0.2,
+        "__collections__": {}
+      },
+      "aGKSZRKCPYTTszGniCJd": {
+        "category": [
+          "Food & Drink",
+          "Bakery & Cakes",
+          "Cakes & Tray Bakes"
+        ],
+        "description": "Delicious as a tea time treat or even as a snack.",
+        "available": true,
+        "stock": 50,
+        "allergen": "This product is gluten free, dairy free, egg free, soya free and vegan.",
+        "offerPrice": null,
+        "ingredients": [
+          "Water",
+          "White Rice Flour",
+          "Brown Rice Flour",
+          "Tapioca Starch",
+          "Corn Starch",
+          "Buckwheat Flour",
+          "Unrefined Sugar",
+          "Carrots (10%)",
+          "Choco Chips (cocoa [cocoa butter, cocoa mass]",
+          "sugar",
+          "rice powder",
+          "sunflower lecithin [emulsifier] and natural flavouring)",
+          "stabiliser: xanthan gum",
+          "baking powder: mono calcium phosphate, corn starch, sodium bicarbonate."
+        ],
+        "tags": [
+          "Incredible Bakery"
+        ],
+        "featured": true,
+        "price": 5.2,
+        "name": "Brazilian Carrot Cake - Pack of 4",
+        "weightKG": null,
+        "img": [
+          "https://vevibes.com/wp-content/uploads/2021/07/9EDEAE1EC15542E6B696932CA6E7F782.jpg"
+        ],
+        "__collections__": {}
+      },
+      "bDJy7LsXwvwuYNQNHytv": {
+        "available": true,
+        "tags": [
+          "Rolin"
+        ],
+        "salePrice": null,
+        "img": [
+          "https://vevibes.com/wp-content/uploads/2021/07/ED290E34571D42D3A2D5B0BE8F8A0ECC.jpg"
+        ],
+        "allergen": " Contains gluten and soya",
+        "ingredients": [
+          "Fried Wheat Gluten (63%)",
+          "Water",
+          "Soybean Sauce (Water, Soybean, Salt, Wheat)",
+          "Sugar",
+          "Salt Colourings",
+          "No Additives"
+        ],
+        "stock": 10,
+        "featured": false,
+        "weightKG": 0.283,
+        "description": "Enjoy in a stir fry or marinated for extra flavour in your favourite dishes.",
+        "category": [
+          "Food & Drink",
+          "Cupboard Staples",
+          "Tinned",
+          "Jar Foods & Spices",
+          "Plant-Based Alternatives",
+          "Vegan Proteins"
+        ],
+        "name": "Rolin Vegetarian Mock Chicken Meat 283g",
+        "price": 2.3,
+        "__collections__": {}
+      },
+      "bNZL4pBO8MHtUw9OFVeP": {
+        "allergen": "Contains WHEAT (GLUTEN). May contain traces of CELERY , MUSTARD , SOYA and LUPIN.",
+        "name": "Meetlyke Vegan Burger - 150g",
+        "img": [
+          "https://vevibes.com/wp-content/uploads/2021/07/vegan_bruger.jpg"
+        ],
+        "salePrice": null,
+        "tags": [
+          "Meetlyke"
+        ],
+        "ingredients": [
+          "Seitan (Water,WHEAT Protein) 71%",
+          "Coconut Fat",
+          "Onions",
+          "Yeast Extract",
+          "Breadcrumbs (WHEAT Flour, Salt, Yeast)",
+          "Pea Protein",
+          "Flavourings",
+          "Spices",
+          "Salt",
+          "WHEAT Starch",
+          "Food Colouring: Iron Oxide."
+        ],
+        "category": [
+          "Food & Drink",
+          "Bacon",
+          "Burgers & Steaks",
+          "Plant-Based Alternatives"
+        ],
+        "available": false,
+        "weightKG": 0.15,
+        "featured": true,
+        "description": "The Meetlyke Vegan Burger with its fine hint of smokey taste can also be used as a steak. Served from the BBQ or from the pan, it makes every meal to a special experience!",
+        "price": 3.09,
+        "stock": false,
+        "__collections__": {}
+      }
+    },
+    "Users": {
+      "6H4MezW2ExQnkDmQCGJo": {
+        "address": [
+          "pYEBOo6r5T34GPmkUmzW"
+        ],
+        "password": "$2b$10$rm7KphOtNSaKbEtlxsZZmur6.eZWAqzk2bJi2vk1dqceZbkFqkAqO",
+        "name": "Vivek",
+        "email": "vivekmahato@cliqtick.com",
+        "__collections__": {}
+      },
+      "jT45pHMxgPw5aZlpMTtX": {
+        "cards": [
+          "MDu4KBZIPeFOJjNOMqoe",
+          "86cvamrbh3yJnYMeQ0MC",
+          "ryuGyW4bqG7gDyFGm5fn",
+          "BzhwrzEbMpTFA2q30QQt",
+          "BnBCdqEIX3ke7V1NQBBE",
+          "emDwgHTWmMqXlqpXeJ4c",
+          "6FwxLwL024VHLihHNqyk"
+        ],
+        "stripeId": "cus_JvJ5zV1mh4k88f",
+        "address": [
+          "4LMnwIdjOGqz3xFVxHNS",
+          "m2OlQI766hI0f6gAXHMg",
+          "Gn8sCucvT36FUycs7DQI"
+        ],
+        "name": "Vivek",
+        "password": "$2b$10$X9s90GBPswa/PHQLUzmkUeEu99dcGTkeSOIs/taWjWzPBfxlzVZBa",
+        "email": "vivekmahato26@cliqtick.com",
+        "__collections__": {}
+      }
+    }
+  }
+}
