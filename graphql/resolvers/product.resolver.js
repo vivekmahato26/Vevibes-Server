@@ -46,6 +46,9 @@ module.exports = {
       if (req.isAuth) {
         const userSnapshot = await db.collection("Users").doc(req.userId).get();
         const userData = userSnapshot.data();
+        if( userData.wishlist === undefined || userData.wishlist.length <= 0) {
+          return { message: "Empty Wishlist!!!" }
+        }
         const index = userData.wishlist.findIndex((id) => id === args.productId);
         if (index === -1) {
           return { res: false };
@@ -130,7 +133,7 @@ module.exports = {
   WishlistedResult: {
     __resolveType: (obj) => {
       if (obj.message) {
-        return 'LoginError'
+        return 'Error'
       } else {
         return 'Sucess'
       }

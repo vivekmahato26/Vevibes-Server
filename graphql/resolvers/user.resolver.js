@@ -86,7 +86,11 @@ module.exports = {
     getWishlist: async (_, args, { req }, info) => {
       if (req.isAuth) {
         const data = await db.collection("Users").doc(req.userId).get();
-        const {wishlist} = data.data();
+        const userData = data.data();
+        if(userData.wishlist === undefined || userData.wishlist.length <= 0){
+          throw new Error("Empty Wishlist!!!")
+        }
+        const wishlist = userData.wishlist;
         var res = [];
         for (var i = 0; i <wishlist.length; i++) {
           const productSnapshot = await db.collection("Products").doc(wishlist[i]).get();

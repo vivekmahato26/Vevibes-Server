@@ -233,11 +233,8 @@
           "https://vevibes.com/wp-content/uploads/2021/07/sweets-2.jpg"
         ],
         "stock": null,
-        "category": [
-          "Food & Drink",
+        "category": 
           "Snacks",
-          "Sweet Treats"
-        ],
         "featured": true,
         "name": "Sweets in the City Apple & Watermelon Dual Pouch 50g",
         "tags": [
@@ -347,12 +344,8 @@
           "Vitamin B12",
           "*Not to be confused with GMO (Genetically Modified) ingredients."
         ],
-        "category": [
+        "category": 
           "Food & Drink",
-          "Cheese Blocks",
-          "Cheese",
-          "Special Offers"
-        ],
         "allergen": "This product is free from the main 14 allergens.",
         "available": true,
         "price": 2.99,
@@ -369,11 +362,8 @@
         "__collections__": {}
       },
       "aGKSZRKCPYTTszGniCJd": {
-        "category": [
-          "Food & Drink",
+        "category": 
           "Bakery & Cakes",
-          "Cakes & Tray Bakes"
-        ],
         "description": "Delicious as a tea time treat or even as a snack.",
         "available": true,
         "stock": 50,
@@ -429,14 +419,8 @@
         "featured": false,
         "weightKG": 0.283,
         "description": "Enjoy in a stir fry or marinated for extra flavour in your favourite dishes.",
-        "category": [
-          "Food & Drink",
+        "category":
           "Cupboard Staples",
-          "Tinned",
-          "Jar Foods & Spices",
-          "Plant-Based Alternatives",
-          "Vegan Proteins"
-        ],
         "name": "Rolin Vegetarian Mock Chicken Meat 283g",
         "price": 2.3,
         "__collections__": {}
@@ -464,12 +448,8 @@
           "WHEAT Starch",
           "Food Colouring: Iron Oxide."
         ],
-        "category": [
-          "Food & Drink",
-          "Bacon",
-          "Burgers & Steaks",
-          "Plant-Based Alternatives"
-        ],
+        "category":
+          "Plant-Based Alternatives",
         "available": false,
         "weightKG": 0.15,
         "featured": true,

@@ -79,13 +79,13 @@ module.exports = {
         featured: Boolean
         featuredImg: String
     }
-    type LoginError {
+    type Error {
         message: String!
       }
     type Sucess {
         res: Boolean!
     }
-      union WishlistedResult = Sucess | LoginError
+      union WishlistedResult = Sucess | Error
     `,
   query: `
         getProducts: [Product]

@@ -12,9 +12,7 @@ const resolvers = require("./graphql/resolvers");
 
 const Auth = require("./auth");
 
-const userId= "Vevibes1";
-const password = "Shipping1!";
-const key = "1D8C81AA5C4D1175";
+
 async function startApolloServer() {
 
   const server = new ApolloServer({
