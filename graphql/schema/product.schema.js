@@ -20,6 +20,7 @@ module.exports = {
         subCategory: [String]
         createdAt: String!
         featuredImg: String
+        brand: String
     }
     input ProductInput {
         name: String!
@@ -40,6 +41,7 @@ module.exports = {
         subCategory: [String]
         createdAt: String!
         featuredImg: String
+        brand: String
     }
     type Nutrition {
         energy: Float
@@ -78,6 +80,7 @@ module.exports = {
         disclaimer: String
         featured: Boolean
         featuredImg: String
+        brand: String
     }
     type Error {
         message: String!

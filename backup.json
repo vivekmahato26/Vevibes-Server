@@ -282,14 +282,8 @@
         ],
         "featured": true,
         "name": "Golden Linseed Loaf - 650g",
-        "category": [
-          "Food  Drink",
+        "category":
           "Bakery & Cakes",
-          "Bread & Rolls",
-          "Dietary",
-          "Gluten Free",
-          "Soy Free"
-        ],
         "stock": 8,
         "allergen": "This product is gluten free, dairy free, egg free, soya free and vegan",
         "salePrice": 2.95,
@@ -315,11 +309,8 @@
           "raising agent: yeast, salt, vegetable fibre, unrefined sugar, xanthan gum",
           "Filling: Potatoes, Mushrooms, Spinach, Rapeseed Oil, seasoning (cornflour, potato starch, salt, flavourings, onion powder, palm oil, sugar, garlic powder, ground turmeric)."
         ],
-        "category": [
-          "Food & Drink",
+        "category":
           "Bakery & Cakes",
-          "Panini's & Pastries"
-        ],
         "img": [
           "https://vevibes.com/wp-content/uploads/2021/07/443C6F85C2ED4F348E81B23974F048EB.jpg"
         ],
