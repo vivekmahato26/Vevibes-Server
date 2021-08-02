@@ -88,7 +88,7 @@ module.exports = {
         const data = await db.collection("Users").doc(req.userId).get();
         const userData = data.data();
         if(userData.wishlist === undefined || userData.wishlist.length <= 0){
-          throw new Error("Empty Wishlist!!!")
+         return [];
         }
         const wishlist = userData.wishlist;
         var res = [];
