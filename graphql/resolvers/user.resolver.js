@@ -24,7 +24,7 @@ module.exports = {
         };
         res.push(temp);
       });
-      return res;
+      return {res: res};
     },
     signIn: async (_, args, context, info) => {
       var email = args.input.email;
@@ -67,7 +67,7 @@ module.exports = {
           });
         }
         console.log(res);
-        return res;
+        return {res: res};
       } else {
         return {message: "Please Login!!!"}
       }
@@ -99,7 +99,7 @@ module.exports = {
             ...productSnapshot.data()
           });
         }
-        return res;
+        return {res: res};
       } else {
         return {message:"Please Login!!!"};
       }
@@ -116,7 +116,7 @@ module.exports = {
             ...cardSnapshot.data()
           });
         }
-        return res;
+        return {res: res};
       }
       else {
         return {message:"Please Login!!!"}
