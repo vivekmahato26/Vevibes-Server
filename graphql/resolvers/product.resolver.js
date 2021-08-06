@@ -17,7 +17,7 @@ module.exports = {
           ...p.data(),
         });
       });
-      return res;
+      return {res: res};
     },
     getProductFromID: async (_, args, context, info) => {
       const productSnapshot = await db
@@ -40,7 +40,7 @@ module.exports = {
           ...p.data(),
         });
       });
-      return res;
+      return {res: res};
     },
     checkWishlisted: async (_, args, { req }, info) => {
       if (req.isAuth) {
