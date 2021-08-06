@@ -126,4 +126,13 @@ module.exports = {
       };
     },
   },
+  CartResult: {
+    __resolveType: (obj) => {
+      if (obj.message) {
+        return 'Error'
+      } else {
+        return 'Cart'
+      }
+    }
+  },
 };

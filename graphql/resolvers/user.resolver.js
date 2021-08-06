@@ -34,7 +34,7 @@ module.exports = {
         .get();
       const userDoc = userSnapshot.docs.pop();
       if(userSnapshot.empty) {
-        throw new Error("Email not Registered!!!")
+        return {message:"Email not Registered!!!"};
       }
       const userId = userDoc.id;
       const userData = userDoc.data();
@@ -50,7 +50,7 @@ module.exports = {
           email: userData.email,
         };
       } else {
-        throw new Error("Invalid Credentials!!!");
+        return {message:"Invalid Credentials!!!"};
       }
     },
     getAddress: async (_, args, { req }, info) => {
@@ -69,7 +69,7 @@ module.exports = {
         console.log(res);
         return res;
       } else {
-        throw new Error("Please Login!!!");
+        return {message: "Please Login!!!"}
       }
     },
     getUser: async (_, args, { req }, info) => {
@@ -80,7 +80,7 @@ module.exports = {
           ...data.data(),
         };
       } else {
-        throw new Error("Please Login!!!");
+        return {message:"Please Login!!!"};
       }
     },
     getWishlist: async (_, args, { req }, info) => {
@@ -101,10 +101,10 @@ module.exports = {
         }
         return res;
       } else {
-        throw new Error("Please Login!!!");
+        return {message:"Please Login!!!"};
       }
     },
-    getCards: async (_, args,{ req},info) => {
+    getCards: async (_, args,{req},info) => {
       if(req.isAuth){
         const data = await db.collection("Users").doc(req.userId).get();
         const {cards} = data.data();
@@ -119,7 +119,7 @@ module.exports = {
         return res;
       }
       else {
-        throw new Error("Please Login!!!")
+        return {message:"Please Login!!!"}
       }
     }
   },
@@ -131,7 +131,7 @@ module.exports = {
         .where("email", "==", args.input.email)
         .get();
       if (!tempSnapshot.empty) {
-        throw new Error("Email already exists!!!");
+        return {message:"Email already exis}s!!!"};
       }
       var email = args.input.email;
       email = email.toLowerCase();
@@ -176,7 +176,7 @@ module.exports = {
         });
         return changed;
       } else {
-        throw new Error("Please Login!!!");
+        return {message:"Please Login!!!"};
       }
     },
     addAddress: async (_, args, { req }, info) => {
@@ -197,7 +197,7 @@ module.exports = {
           ...addressSnapshot.data(),
         };
       } else {
-        throw new Error("Please Login!!!");
+        return {message:"Please Login!!!"};
       }
     },
     deleteAddress: async (_, args, { req }, info) => {
@@ -214,7 +214,7 @@ module.exports = {
           });
         return true;
       } else {
-        throw new Error("Please Login!!!");
+        return {message:"Please Login!!!"};
       }
     },
     addToWishlist: async (_, args, { req }, info) => {
@@ -227,7 +227,7 @@ module.exports = {
           });
         return true;
       } else {
-        throw new Error("Please Login!!!");
+        return {message:"Please Login!!!"};
       }
     },
     removeFromWishlist: async (_, args, { req }, info) => {
@@ -240,7 +240,7 @@ module.exports = {
           });
         return true;
       } else {
-        throw new Error("Please Login!!!");
+        return {message:"Please Login!!!"};
       }
     },
     updateAddress: async (_, args, { req }, info) => {
@@ -250,7 +250,7 @@ module.exports = {
         });
         return true;
       } else {
-        throw new Error("Please Login!!!");
+        return {message:"Please Login!!!"};
       }
     },
     addCard: async (_, args, { req }, info) => {
@@ -270,7 +270,7 @@ module.exports = {
           const cardSnapshot = await db.collection("Cards").doc(cards[i]).get();
           const {fingerprint} = cardSnapshot.data();
           if(paymentMethod.fingerprint === fingerprint) {
-            throw new Error("Card Already Added!!!")
+            return {message:"Card Already Added!!!"}
           }
         }
         const newCard = await cardRef.add({
@@ -291,7 +291,7 @@ module.exports = {
           ...cardSnapshot.data(),
         };
       } else {
-        throw new Error("Please Login!!!")
+        return {message:"Please Login!!!"}
       }
     },
     deleteCard: async (_, args, { req }, info) => {
@@ -308,7 +308,7 @@ module.exports = {
           });
         return true;
       } else {
-        throw new Error("Please Login!!!");
+        return {message:"Please Login!!!"};
       }
     }
   },
@@ -369,6 +369,87 @@ module.exports = {
         });
       }
       return res;
+    }
+  },
+  SigninResult: {
+    __resolveType: (obj) => {
+      if (obj.message) {
+        return 'Error'
+      } else {
+        return 'Auth'
+      }
+    }
+  },
+  AddressesResult: {
+    __resolveType: (obj) => {
+      if (obj.message) {
+        return 'Error'
+      } else {
+        return 'Addresses'
+      }
+    }
+  },
+  ProductsResult: {
+    __resolveType: (obj) => {
+      if (obj.message) {
+        return 'Error'
+      } else {
+        return 'Products'
+      }
+    }
+  },
+  CardsResult: {
+    __resolveType: (obj) => {
+      if (obj.message) {
+        return 'Error'
+      } else {
+        return 'Cards'
+      }
+    }
+  },
+  UserResult: {
+    __resolveType: (obj) => {
+      if (obj.message) {
+        return 'Error'
+      } else {
+        return 'User'
+      }
+    }
+  },
+  CardResult: {
+    __resolveType: (obj) => {
+      if (obj.message) {
+        return 'Error'
+      } else {
+        return 'Card'
+      }
+    }
+  },
+  AddressResult: {
+    __resolveType: (obj) => {
+      if (obj.message) {
+        return 'Error'
+      } else {
+        return 'Address'
+      }
+    }
+  },
+  UsersResult: {
+    __resolveType: (obj) => {
+      if (obj.message) {
+        return 'Error'
+      } else {
+        return 'Users'
+      }
+    }
+  },
+  SignupResult: {
+    __resolveType: (obj) => {
+      if (obj.message) {
+        return 'Error'
+      } else {
+        return 'UserId'
+      }
     }
   },
 };

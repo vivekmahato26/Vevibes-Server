@@ -7,7 +7,7 @@ module.exports = {
             user: User!
             createdAt: String!
             status: String!
-            shipping: String
+            shipping: Shipment
             payment: Payment!
             paymentStatus: Boolean!
         }
@@ -39,6 +39,7 @@ module.exports = {
             cart: String!
             address: String!
             payment: PaymentInput
+            shipping: String!
         }
 
         input PaymentInput {

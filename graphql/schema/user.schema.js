@@ -71,26 +71,38 @@ module.exports = {
       name: String!
       expires: String!
     }
+    type Addresses {
+      res: [Address]
+    }
+    type Cards {
+      res : [Card]
+    }
+    type Users {
+      res: [User]
+    }
+    type UserId {
+      id: String!
+    }
     
     `,
   query: `
-      getUsers: [User]
-      signIn(input: SigninInput): Auth
-      getAddress : [Address]
-      getUser: User
-      getWishlist: [Product]
-      getCards: [Card]
+      getUsers: UsersResult
+      signIn(input: SigninInput): SigninResult
+      getAddress : AddressesResult
+      getUser: UserResult
+      getWishlist: ProductsResult
+      getCards: CardsResult
 `,
   mutation: `
-    addCard(input:CardInput): Card!
-    deleteCard(cardId: String!): Boolean!
-    signUp(input: SignupInput): String!
-    verifyOTP(phone: String!,otp: Int!): Boolean!
-    changePassword(password: String!): Boolean!
-    addAddress(input: AddressInput): Address
-    updateAddress(input: AddressInput,addressId: String!): Boolean!
-    deleteAddress(addressId: String!): Boolean!
-    addToWishlist(productId: String!) : Boolean!
-    removeFromWishlist(productId: String!): Boolean!
+    addCard(input:CardInput): CardResult
+    deleteCard(cardId: String!): BooleanResult
+    signUp(input: SignupInput): SignupResult
+    verifyOTP(phone: String!,otp: Int!): BooleanResult
+    changePassword(password: String!): BooleanResult
+    addAddress(input: AddressInput): AddressResult
+    updateAddress(input: AddressInput,addressId: String!): BooleanResult
+    deleteAddress(addressId: String!): BooleanResult
+    addToWishlist(productId: String!) : BooleanResult
+    removeFromWishlist(productId: String!): BooleanResult
 `
 };

@@ -126,16 +126,25 @@ module.exports = {
         });
         return paymentIntent.client_secret;
       } else {
-        throw new Error("Please Login!!!")
+        return { message: "Please Login!!!" }
       }
     }
   },
-  WishlistedResult: {
+  BooleanResult: {
     __resolveType: (obj) => {
       if (obj.message) {
         return 'Error'
       } else {
         return 'Sucess'
+      }
+    }
+  },
+  ProductResult: {
+    __resolveType: (obj) => {
+      if (obj.message) {
+        return 'Error'
+      } else {
+        return 'Product'
       }
     }
   }

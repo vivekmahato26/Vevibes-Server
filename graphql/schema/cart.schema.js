@@ -30,11 +30,11 @@ module.exports = {
     }
     `,
     Query: `
-    getCart(id:String!): Cart!
-    getUserCart: Cart!
+    getCart(id:String!): CartResult
+    getUserCart: CartResult
     `,
     Mutation: `
-    addToCart(item: CartItemInput!): Cart!
-    removeFromCart(item: CartItemInput!, id: String!): Cart!
+    addToCart(item: CartItemInput!): CartResult
+    removeFromCart(item: CartItemInput!, id: String!): CartResult
     `
 };

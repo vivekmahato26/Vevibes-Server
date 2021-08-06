@@ -82,23 +82,25 @@ module.exports = {
         featuredImg: String
         brand: String
     }
+    type Products {
+      res: [Product]
+    }
     type Error {
         message: String!
       }
     type Sucess {
         res: Boolean!
     }
-      union WishlistedResult = Sucess | Error
     `,
   query: `
-        getProducts: [Product]
-        getProductFromID(productId: String!): Product
-        getFeaturedProducts: [Product]
-        checkWishlisted(productId: String!): WishlistedResult!
+        getProducts: ProductsResult
+        getProductFromID(productId: String!): ProductResult
+        getFeaturedProducts: ProductsResult
+        checkWishlisted(productId: String!): BooleanResult!
     `,
   mutation: `
-        addProduct(input:ProductInput): Product
-        updateProduct(productId: String!,updates:ProductUpdate):Product
+        addProduct(input:ProductInput): ProductResult
+        updateProduct(productId: String!,updates:ProductUpdate):ProductResult
         checkout(amount: Float!,currency: String!,description: String!,paymentMethod: [String!]) : String!
     `,
    

@@ -7,6 +7,7 @@ const addressRef = db.collection("Address");
 const cartRef = db.collection("Cart");
 const orderRef = db.collection("Order");
 const paymentRef = db.collection("Payments");
+const shippingRef = db.collection("Shipping");
 
 const stripe = require("../../stripe");
 
@@ -46,11 +47,10 @@ module.exports = {
                     throw new Error("Empty Cart!!!");
                 }
                 const newOrder = await orderRef.add({
-                    cart: args.input.cart,
-                    address: args.input.address,
-                    user: req.userId,
+                    ...args.input,
                     createdAt: date,
-                    status: "Order Placed"
+                    status: "Order Placed",
+
                 });
                 const orderData = await newOrder.get();
                 return {
@@ -96,6 +96,13 @@ module.exports = {
             return {
                 id: addressSnapshot.id,
                 ...addressSnapshot.data()
+            }
+        },
+        shipping: async (parent) => {
+            const shippingSnapshot = await shippingRef.doc(parent.shipping).get();
+            return {
+                id: shippingSnapshot.id,
+                ...shippingSnapshot.data()
             }
         }
     }

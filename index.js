@@ -12,8 +12,19 @@ const resolvers = require("./graphql/resolvers");
 
 const Auth = require("./auth");
 
+const stripe = require("./stripe");
+
 
 async function startApolloServer() {
+
+  // const charge = await stripe.charges.create({
+  //   amount: 100,
+  //   currency: 'INR',
+  //   source: 'tok_1JKH2XSHVA8HGx9rYEeI2C9C',
+  //   description: 'My First Test Charge (created for API docs)',
+  // });
+
+  // console.log(charge);
 
   const server = new ApolloServer({
     typeDefs,
