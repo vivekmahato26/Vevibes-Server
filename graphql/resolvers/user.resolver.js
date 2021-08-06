@@ -215,7 +215,7 @@ module.exports = {
           .update({
             address: admin.firestore.FieldValue.arrayRemove(args.addressId),
           });
-        return true;
+        return {res:true};
       } else {
         return {message:"Please Login!!!"};
       }
@@ -228,7 +228,7 @@ module.exports = {
           .update({
             wishlist: admin.firestore.FieldValue.arrayUnion(args.productId),
           });
-        return true;
+        return {res:true};
       } else {
         return {message:"Please Login!!!"};
       }
@@ -241,7 +241,7 @@ module.exports = {
           .update({
             wishlist: admin.firestore.FieldValue.arrayRemove(args.productId),
           });
-        return true;
+        return {res:true};
       } else {
         return {message:"Please Login!!!"};
       }
@@ -251,7 +251,7 @@ module.exports = {
         const updateAddress = await db.collection("Address").doc(args.addressId).update({
           ...args.input
         });
-        return true;
+        return {res:true};
       } else {
         return {message:"Please Login!!!"};
       }
@@ -309,7 +309,7 @@ module.exports = {
           .update({
             cards: admin.firestore.FieldValue.arrayRemove(args.cardId),
           });
-        return true;
+        return {res:true};
       } else {
         return {message:"Please Login!!!"};
       }
