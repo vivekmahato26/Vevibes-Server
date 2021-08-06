@@ -57,6 +57,9 @@ module.exports = {
       if (req.isAuth) {
         const userSnapshot = await db.collection("Users").doc(req.userId).get();
         const userData = userSnapshot.data();
+        if(userData.address === undefined || userData.address.length <= 0){
+          return {res:[]};
+         }
         const addressId = userData.address;
         let res = [];
         for (var i = 0; i <addressId.length; i++) {
@@ -88,7 +91,7 @@ module.exports = {
         const data = await db.collection("Users").doc(req.userId).get();
         const userData = data.data();
         if(userData.wishlist === undefined || userData.wishlist.length <= 0){
-         return [];
+         return {res:[]};
         }
         const wishlist = userData.wishlist;
         var res = [];
