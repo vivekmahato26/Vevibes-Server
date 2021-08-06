@@ -268,7 +268,8 @@ module.exports = {
           },
         });
         const userSnapshot = await db.collection("Users").doc(req.userId).get();
-        const {cards} = userSnapshot.data();
+        const cradsData = userSnapshot.data();
+        const fingerprint = cradsData.fingerprint;
         let added = false;
         for (var i = 0; i <cards.length; i++) {
           const cardSnapshot = await db.collection("Cards").doc(cards[i]).get();
