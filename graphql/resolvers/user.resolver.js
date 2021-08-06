@@ -269,12 +269,16 @@ module.exports = {
         });
         const userSnapshot = await db.collection("Users").doc(req.userId).get();
         const {cards} = userSnapshot.data();
+        let added = false;
         for (var i = 0; i <cards.length; i++) {
           const cardSnapshot = await db.collection("Cards").doc(cards[i]).get();
           const {fingerprint} = cardSnapshot.data();
-          if(paymentMethod.fingerprint === fingerprint) {
-            return {message:"Card Already Added!!!"}
+          if(paymentMethod.card.fingerprint === fingerprint) {
+            added = true;
           }
+        }
+        if(added) {
+          return {message:"Card Already Added!!!"}
         }
         const newCard = await cardRef.add({
           ...args.input,
