@@ -268,12 +268,13 @@ module.exports = {
           },
         });
         const userSnapshot = await db.collection("Users").doc(req.userId).get();
-        const cradsData = userSnapshot.data();
-        const fingerprint = cradsData.fingerprint;
+        const userData = userSnapshot.data();
+        const cards = userData.cards;
         let added = false;
         for (var i = 0; i <cards.length; i++) {
           const cardSnapshot = await db.collection("Cards").doc(cards[i]).get();
-          const {fingerprint} = cardSnapshot.data();
+          const cardsData = cardSnapshot.data();
+          const fingerprint = cardsData.fingerprint;
           if(paymentMethod.card.fingerprint === fingerprint) {
             added = true;
           }
