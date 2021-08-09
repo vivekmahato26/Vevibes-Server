@@ -274,6 +274,7 @@ module.exports = {
         for (var i = 0; i <cards.length; i++) {
           const cardSnapshot = await db.collection("Cards").doc(cards[i]).get();
           const cardsData = cardSnapshot.data();
+          console.log(cardsData);
           const fingerprint = cardsData.fingerprint;
           if(paymentMethod.card.fingerprint === fingerprint) {
             added = true;

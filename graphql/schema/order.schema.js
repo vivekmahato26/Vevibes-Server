@@ -1,68 +1,101 @@
 module.exports = {
     rootScheme: `
+        type Cart {
+            product: Product
+            quantity: Int!
+        }
+        input CartInput {
+            product: String!
+            quantity: Int!
+        }
         type Order {
             id: ID!
-            cart: Cart!
             address: Address!
             user: User!
             createdAt: String!
             status: String!
-            shipping: Shipment
-            payment: Payment!
-            paymentStatus: Boolean!
+            payment: String
+            paymentStatus: String!
+            shipment: [Shipment]
+            lable: [Lable]
+            cart: [Cart]
+            coupon: String
+            cartValue: String!
+        }
+        type Shipment {
+            shipment_id: String!
+            carrier_id: String!
+            service_code: String!
+            ship_date: String!
+            created_at: String!
+            modified_at: String!
+            shipment_status: String!
+        }
+        type Lable {
+            label_id: String!
+            status: String!
+            ship_date: String!
+            created_at: String!
+            shipment_cost: ShipmentCost!
+            tracking_number: String!
+            is_return_label: Boolean!
+            voided: Boolean!
+            trackable: Boolean!
+            carrier_code: String!
+            tracking_status: String!
+            pdf: String!
+            png: String!
+            charge_event: String!
         }
 
-        type Payment {
-            created: String!
-            last4: Int!
+        type ShipmentCost {
             currency: String!
-            addressState: String!
-            funding: String!
-            addressLine1: String!
-            name: String!
-            number: String
-            brand: String!
-            addressZip: String!
-            addressLine2: String
-            country: String!
-            expYear: Int!
-            addressCountry: String!
-            cardId: String!
-            expMonth: Int!
-            addressCity: String!
-            tokenId: String!
-            paymentStatus: Boolean!
+            amount: Float!
+        }
+
+        input ShipmentCostInput {
+            currency: String!
+            amount: Float!
+        }
+
+        input LableInput {
+            label_id: String!
+            status: String!
+            ship_date: String!
+            created_at: String!
+            shipment_cost: ShipmentCostInput!
+            tracking_number: String!
+            is_return_label: Boolean!
+            voided: Boolean!
+            trackable: Boolean!
+            carrier_code: String!
+            tracking_status: String!
+            pdf: String!
+            png: String!
+            charge_event: String!
+        }
+
+        input ShipmentInput {
+            shipment_id: String!
+            carrier_id: String!
+            service_code: String!
+            ship_date: String!
+            created_at: String!
+            modified_at: String!
+            shipment_status: String!
         }
 
         input OrderInput {
-            paymentStatus: Boolean!
-            cart: String!
             address: String!
-            payment: PaymentInput
-            shipping: String!
-        }
-
-        input PaymentInput {
-            created: String!
-            last4: Int!
-            currency: String!
-            addressState: String!
-            funding: String!
-            addressLine1: String!
-            name: String!
-            number: String
-            cvc: String
-            brand: String!
-            addressZip: String!
-            addressLine2: String
-            country: String!
-            expYear: Int!
-            addressCountry: String!
-            cardId: String!
-            expMonth: Int!
-            addressCity: String!
-            tokenId: String!
-            cart: String!
+            user: String!
+            status: String!
+            payment: String
+            paymentStatus: String!
+            shipment: [ShipmentInput]
+            lable: [LableInput]
+            cart: [CartInput]
+            coupon: String
+            cartValue: String!
         }
     `,
     Query: `
@@ -70,7 +103,6 @@ module.exports = {
         getUserOrders: [Order]
     `,
     Mutation: `
-        createOrder(input: OrderInput): Order!
-        createPayment(input: PaymentInput): Payment!
+    createOrder(input:OrderInput): Order
     `
 }

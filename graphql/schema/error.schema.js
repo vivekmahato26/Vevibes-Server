@@ -11,6 +11,5 @@ module.exports = {
         union AddressResult = Address | Error
         union UsersResult = Users | Error
         union SignupResult = UserId | Error
-        union CartResult = Cart | Error
     `
 }
