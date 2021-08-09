@@ -25,9 +25,12 @@ module.exports = {
                 var res = [];
                 for (var i = 0; i < orders.length; i++) {
                     const orderSnapshot = await db.collection("Order").doc(orders[i]).get();
+                    const orderData = orderSnapshot.data();
+                    const createdAt = orderData.createdAt
                     res.push({
                         id: orderSnapshot.id,
-                        ...orderSnapshot.data()
+                        ...orderSnapshot.data(),
+                        createdAt: createdAt.toDate()
                     })
                 }
                 return res;
