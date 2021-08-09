@@ -19,14 +19,17 @@ module.exports = {
         },
         getUserOrders: async (_, args, { req }, info) => {
             if (req.isAuth) {
-                const orderSnapshot = await orderRef.where("user", "==", req.userId).get();
+                const userSnapshot = await db.collection("Users").doc(req.userId).get();
+                const userdata = userSnapshot.data();
+                const orders = userdata.orders;
                 var res = [];
-                orderSnapshot.forEach((order) => {
+                for (var i = 0; i < orders.length; i++) {
+                    const orderSnapshot = await db.collection("Order").doc(orders[i]).get();
                     res.push({
-                        id: order.id,
-                        ...order.data()
-                    });
-                });
+                        id: orderSnapshot.id,
+                        ...orderSnapshot.data()
+                    })
+                }
                 return res;
             } else {
                 throw new Error("Please Login!!!");
