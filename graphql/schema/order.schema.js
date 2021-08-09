@@ -20,7 +20,7 @@ module.exports = {
             lable: [Lable]
             cart: [Cart]
             coupon: String
-            cartValue: String!
+            cartValue: Float!
         }
         type Shipment {
             shipment_id: String!
@@ -94,7 +94,7 @@ module.exports = {
             lable: [LableInput]
             cart: [CartInput]
             coupon: String
-            cartValue: String!
+            cartValue: Float!
         }
     `,
     Query: `
