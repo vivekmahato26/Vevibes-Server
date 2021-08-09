@@ -11,6 +11,7 @@ module.exports = {
       wishlist: [Product]
       cards: [Card]
       stripeId: String!
+      orders: [Order]
     }
 
     input SignupInput {

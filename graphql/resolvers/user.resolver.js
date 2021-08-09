@@ -379,6 +379,21 @@ module.exports = {
         });
       }
       return res;
+    },
+    orders: async (parent) => {
+      const orders = parent.orders;
+      var res = [];
+      if(orders.length <=0 || orders === undefined || orders === null) {
+        return res;
+      }
+      for (let index = 0; index < orders.length; index++) {
+        const orderSnapshot = await db.collection("Order").doc(orders[index]).get();
+        res.push({
+          id: orderSnapshot.id,
+          ...orderSnapshot.data()
+        })
+      }
+      return res;
     }
   },
   SigninResult: {

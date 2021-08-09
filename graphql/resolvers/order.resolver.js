@@ -45,6 +45,12 @@ module.exports = {
 
                 });
                 const orderData = await newOrder.get();
+                const userUpdate = await db
+                    .collection("Users")
+                    .doc(req.userId)
+                    .update({
+                        orders: admin.firestore.FieldValue.arrayUnion(orderData.id),
+                    });
                 return {
                     id: orderData.id,
                     ...orderData.data()
@@ -72,7 +78,7 @@ module.exports = {
         cart: async (parent) => {
             const cart = parent.cart;
             var res = [];
-            for (var i = 0; i <cart.length; i++) {
+            for (var i = 0; i < cart.length; i++) {
                 const productSnapshot = await db.collection("Products").doc(cart[i].product).get();
                 const productData = productSnapshot.data();
                 const productId = productSnapshot.id;
