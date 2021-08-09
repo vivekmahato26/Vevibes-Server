@@ -87,7 +87,6 @@ module.exports = {
 
         input OrderInput {
             address: String!
-            user: String!
             status: String!
             payment: String
             paymentStatus: String!

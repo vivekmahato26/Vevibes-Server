@@ -41,6 +41,7 @@ module.exports = {
                     ...args.input,
                     createdAt: date,
                     status: "Order Placed",
+                    user: req.userId,
 
                 });
                 const orderData = await newOrder.get();
