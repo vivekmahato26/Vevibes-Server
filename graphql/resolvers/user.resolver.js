@@ -69,7 +69,6 @@ module.exports = {
             ...addressSnapshot.data(),
           });
         }
-        console.log(res);
         return {res: res};
       } else {
         return {message: "Please Login!!!"}
@@ -144,7 +143,7 @@ module.exports = {
         password,
       });
       const userId = snapshot.id;
-      return userId;
+      return {id:userId};
     },
     verifyOTP: async (_, args, context, info) => {
       const snapshot = await verifyRef.where("phone", "==", args.phone).get();
@@ -168,7 +167,7 @@ module.exports = {
           .doc(verifyId)
           .delete();
       }
-      return verified;
+      return {res:verified};
     },
     changePassword: async (_, args, { req }, info) => {
       if (req.isAuth) {
@@ -177,7 +176,7 @@ module.exports = {
         const updatePass = await db.collection("Users").doc(req.userId).update({
           password,
         });
-        return changed;
+        return {res:changed};
       } else {
         return {message:"Please Login!!!"};
       }
