@@ -24,6 +24,9 @@ module.exports = {
                 const userdata = userSnapshot.data();
                 const orders = userdata.orders;
                 var res = [];
+                if(orders === undefined || orders === null || orders.length <= 0) {
+                    return res;
+                }
                 for (var i = 0; i < orders.length; i++) {
                     const orderSnapshot = await db.collection("Order").doc(orders[i]).get();
                     const orderData = orderSnapshot.data();
