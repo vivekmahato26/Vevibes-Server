@@ -50,7 +50,7 @@ module.exports = {
                 const newOrder = await orderRef.add({
                     ...args.input,
                     createdAt: date,
-                    status: "Order Placed",
+                    status: admin.firestore.FieldValue.arrayUnion(args.input.status),
                     user: req.userId,
 
                 });
