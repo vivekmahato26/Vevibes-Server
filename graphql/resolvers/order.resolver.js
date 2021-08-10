@@ -14,7 +14,8 @@ module.exports = {
             const orderSnapshot = await db.collection("Order").doc(args.id).get();
             return {
                 id: orderSnapshot.id,
-                ...orderSnapshot.data()
+                ...orderSnapshot.data(),
+                createdAt: createdAt.toDate()
             }
         },
         getUserOrders: async (_, args, { req }, info) => {
