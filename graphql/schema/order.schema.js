@@ -13,7 +13,7 @@ module.exports = {
             address: Address!
             user: User!
             createdAt: String!
-            status: String!
+            status: [Status]!
             payment: String
             paymentStatus: String!
             shipment: [Shipment]
@@ -87,7 +87,7 @@ module.exports = {
 
         input OrderInput {
             address: String!
-            status: String!
+            status: [StatusInput]!
             payment: String
             paymentStatus: String!
             shipment: [ShipmentInput]
@@ -95,6 +95,17 @@ module.exports = {
             cart: [CartInput]
             coupon: String
             cartValue: Float!
+        }
+        type Status {
+            updatedAt: String!
+            status: String!
+            statusCode: String!
+        }
+
+        input StatusInput {
+            updatedAt: String!
+            status: String!
+            statusCode: String!
         }
     `,
     Query: `
