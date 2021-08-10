@@ -12,10 +12,21 @@ module.exports = {
     Query: {
         getOrder: async (_, args, { req }, info) => {
             const orderSnapshot = await db.collection("Order").doc(args.id).get();
+            const orderData = orderSnapshot.data();
+            const { status } = orderData;
+            var temp = [];
+            for (let i = 0; i < status.length; i++) {
+                temp.push({
+                    updatedAt: status[i].updatedAt.toDate(),
+                    status: status[i].status,
+                    statusCode: status[i].statusCode
+                })
+            }
             return {
                 id: orderSnapshot.id,
                 ...orderSnapshot.data(),
-                createdAt: createdAt.toDate()
+                createdAt: createdAt.toDate(),
+                status: temp
             }
         },
         getUserOrders: async (_, args, { req }, info) => {
@@ -24,17 +35,27 @@ module.exports = {
                 const userdata = userSnapshot.data();
                 const orders = userdata.orders;
                 var res = [];
-                if(orders === undefined || orders === null || orders.length <= 0) {
+                if (orders === undefined || orders === null || orders.length <= 0) {
                     return res;
                 }
                 for (var i = 0; i < orders.length; i++) {
                     const orderSnapshot = await db.collection("Order").doc(orders[i]).get();
                     const orderData = orderSnapshot.data();
                     const createdAt = orderData.createdAt
+                    const { status } = orderData;
+                    var temp = [];
+                    for (let i = 0; i < status.length; i++) {
+                        temp.push({
+                            updatedAt: status[i].updatedAt.toDate(),
+                            status: status[i].status,
+                            statusCode: status[i].statusCode
+                        })
+                    }
                     res.push({
                         id: orderSnapshot.id,
                         ...orderSnapshot.data(),
-                        createdAt: createdAt.toDate()
+                        createdAt: createdAt.toDate(),
+                        status: temp
                     })
                 }
                 return res;
@@ -47,11 +68,11 @@ module.exports = {
         createOrder: async (_, args, { req }, info) => {
             if (req.isAuth) {
                 const date = new Date();
-                var status= {
+                var status = {
                     updatedAt: new Date(),
                     status: "Order Placed",
                     statusCode: "01"
-                  };
+                };
                 const newOrder = await orderRef.add({
                     ...args.input,
                     createdAt: date,
