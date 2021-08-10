@@ -13,7 +13,7 @@ module.exports = {
         getOrder: async (_, args, { req }, info) => {
             const orderSnapshot = await db.collection("Order").doc(args.id).get();
             const orderData = orderSnapshot.data();
-            const { status } = orderData;
+            const { status,createdAt } = orderData;
             var temp = [];
             for (let i = 0; i < status.length; i++) {
                 temp.push({
