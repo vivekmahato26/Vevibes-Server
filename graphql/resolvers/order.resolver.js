@@ -47,10 +47,15 @@ module.exports = {
         createOrder: async (_, args, { req }, info) => {
             if (req.isAuth) {
                 const date = new Date();
+                var status= {
+                    updatedAt: new Date(),
+                    status: "Order Placed",
+                    statusCode: "01"
+                  };
                 const newOrder = await orderRef.add({
                     ...args.input,
                     createdAt: date,
-                    status: admin.firestore.FieldValue.arrayUnion(args.input.status),
+                    status: admin.firestore.FieldValue.arrayUnion(status),
                     user: req.userId,
 
                 });
