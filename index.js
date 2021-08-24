@@ -25,7 +25,6 @@ async function startApolloServer() {
   // });
 
   // console.log(charge);
-
   const server = new ApolloServer({
     typeDefs,
     resolvers,
