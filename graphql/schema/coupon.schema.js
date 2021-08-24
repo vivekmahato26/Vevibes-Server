@@ -10,6 +10,8 @@ module.exports = {
             user: User
             createdAt: String!
             active: Boolean!
+            discount: String!
+            percent: String!
         }
 
         input CouponInput {
@@ -21,6 +23,8 @@ module.exports = {
             user: String
             createdAt: String!
             active: Boolean!
+            discount: String!
+            percent: String!
         }
     `,
     Query: `
