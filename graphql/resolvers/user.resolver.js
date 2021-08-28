@@ -325,8 +325,11 @@ module.exports = {
         const tempSnapshot = await userRef
           .where("email", "==", args.input.email)
           .get();
+        const userSnapshot = await db.collection("Users").doc(req.userId).get();
+        const userData = userSnapshot.data();
         if (!tempSnapshot.empty) {
-          if(req.email !== args.input.email) {
+          console.log(userData.email,args.input.email)
+          if(userData.email !== args.input.email) {
             return { message: "Email already exists!!!" };
           }
         }
