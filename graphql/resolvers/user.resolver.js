@@ -326,7 +326,9 @@ module.exports = {
           .where("email", "==", args.input.email)
           .get();
         if (!tempSnapshot.empty) {
-          return { message: "Email already exists!!!" };
+          if(req.email !== args.input.email) {
+            return { message: "Email already exists!!!" };
+          }
         }
         const updateUser = await db.collection("Users").doc(req.userId).update({
           ...args.input
