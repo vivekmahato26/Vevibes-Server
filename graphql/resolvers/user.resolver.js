@@ -133,7 +133,7 @@ module.exports = {
         .where("email", "==", args.input.email)
         .get();
       if (!tempSnapshot.empty) {
-        return { message: "Email already exis}s!!!" };
+        return { message: "Email already exists!!!" };
       }
       var email = args.input.email;
       email = email.toLowerCase();
@@ -326,12 +326,11 @@ module.exports = {
           .where("email", "==", args.input.email)
           .get();
         if (!tempSnapshot.empty) {
-          return { message: "Email already exis}s!!!" };
+          return { message: "Email already exists!!!" };
         }
         const updateUser = await db.collection("Users").doc(req.userId).update({
           ...args.input
         });
-
         return { res: true };
       } else {
         return { message: "Please Login!!!" };
