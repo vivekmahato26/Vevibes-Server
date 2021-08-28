@@ -328,7 +328,6 @@ module.exports = {
         const userSnapshot = await db.collection("Users").doc(req.userId).get();
         const userData = userSnapshot.data();
         if (!tempSnapshot.empty) {
-          console.log(userData.email,args.input.email)
           if(userData.email !== args.input.email) {
             return { message: "Email already exists!!!" };
           }
