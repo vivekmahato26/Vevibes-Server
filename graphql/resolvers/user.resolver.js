@@ -319,6 +319,17 @@ module.exports = {
       } else {
         return {message:"Please Login!!!"};
       }
+    },
+    updateUser: async (_, args,{req}, info) => {
+      if (req.isAuth) {
+        const updateUser = await db.collection("Users").doc(req.userId).update({
+          ...args.input
+        });
+        
+        return {res:true};
+      } else {
+        return {message:"Please Login!!!"};
+      }
     }
   },
   User: {

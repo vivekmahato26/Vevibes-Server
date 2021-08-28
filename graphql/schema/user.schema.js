@@ -84,6 +84,13 @@ module.exports = {
     type UserId {
       id: String!
     }
+
+    input UserInput {
+      name: String
+      email: String
+      phone: String
+      image: String
+    }
     
     `,
   query: `
@@ -105,5 +112,6 @@ module.exports = {
     deleteAddress(addressId: String!): BooleanResult
     addToWishlist(productId: String!) : BooleanResult
     removeFromWishlist(productId: String!): BooleanResult
+    updateUser(input: UserInput): BooleanResult
 `
 };
