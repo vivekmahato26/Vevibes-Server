@@ -12,6 +12,7 @@ module.exports = {
       cards: [Card]
       stripeId: String!
       orders: [Order]
+      image: String
     }
 
     input SignupInput {

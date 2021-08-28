@@ -24,7 +24,7 @@ module.exports = {
         };
         res.push(temp);
       });
-      return {res: res};
+      return { res: res };
     },
     signIn: async (_, args, context, info) => {
       var email = args.input.email;
@@ -33,8 +33,8 @@ module.exports = {
         .where("email", "==", email)
         .get();
       const userDoc = userSnapshot.docs.pop();
-      if(userSnapshot.empty) {
-        return {message:"Email not Registered!!!"};
+      if (userSnapshot.empty) {
+        return { message: "Email not Registered!!!" };
       }
       const userId = userDoc.id;
       const userData = userDoc.data();
@@ -50,28 +50,28 @@ module.exports = {
           email: userData.email,
         };
       } else {
-        return {message:"Invalid Credentials!!!"};
+        return { message: "Invalid Credentials!!!" };
       }
     },
     getAddress: async (_, args, { req }, info) => {
       if (req.isAuth) {
         const userSnapshot = await db.collection("Users").doc(req.userId).get();
         const userData = userSnapshot.data();
-        if(userData.address === undefined || userData.address.length <= 0){
-          return {res:[]};
-         }
+        if (userData.address === undefined || userData.address.length <= 0) {
+          return { res: [] };
+        }
         const addressId = userData.address;
         let res = [];
-        for (var i = 0; i <addressId.length; i++) {
+        for (var i = 0; i < addressId.length; i++) {
           const addressSnapshot = await db.collection("Address").doc(addressId[i]).get();
           res.push({
             id: addressSnapshot.id,
             ...addressSnapshot.data(),
           });
         }
-        return {res: res};
+        return { res: res };
       } else {
-        return {message: "Please Login!!!"}
+        return { message: "Please Login!!!" }
       }
     },
     getUser: async (_, args, { req }, info) => {
@@ -82,46 +82,46 @@ module.exports = {
           ...data.data(),
         };
       } else {
-        return {message:"Please Login!!!"};
+        return { message: "Please Login!!!" };
       }
     },
     getWishlist: async (_, args, { req }, info) => {
       if (req.isAuth) {
         const data = await db.collection("Users").doc(req.userId).get();
         const userData = data.data();
-        if(userData.wishlist === undefined || userData.wishlist.length <= 0){
-         return {res:[]};
+        if (userData.wishlist === undefined || userData.wishlist.length <= 0) {
+          return { res: [] };
         }
         const wishlist = userData.wishlist;
         var res = [];
-        for (var i = 0; i <wishlist.length; i++) {
+        for (var i = 0; i < wishlist.length; i++) {
           const productSnapshot = await db.collection("Products").doc(wishlist[i]).get();
           res.push({
             id: productSnapshot.id,
             ...productSnapshot.data()
           });
         }
-        return {res: res};
+        return { res: res };
       } else {
-        return {message:"Please Login!!!"};
+        return { message: "Please Login!!!" };
       }
     },
-    getCards: async (_, args,{req},info) => {
-      if(req.isAuth){
+    getCards: async (_, args, { req }, info) => {
+      if (req.isAuth) {
         const data = await db.collection("Users").doc(req.userId).get();
-        const {cards} = data.data();
+        const { cards } = data.data();
         var res = [];
-        for (var i = 0; i <cards.length; i++) {
+        for (var i = 0; i < cards.length; i++) {
           const cardSnapshot = await db.collection("Cards").doc(cards[i]).get();
           res.push({
             id: cardSnapshot.id,
             ...cardSnapshot.data()
           });
         }
-        return {res: res};
+        return { res: res };
       }
       else {
-        return {message:"Please Login!!!"}
+        return { message: "Please Login!!!" }
       }
     }
   },
@@ -133,7 +133,7 @@ module.exports = {
         .where("email", "==", args.input.email)
         .get();
       if (!tempSnapshot.empty) {
-        return {message:"Email already exis}s!!!"};
+        return { message: "Email already exis}s!!!" };
       }
       var email = args.input.email;
       email = email.toLowerCase();
@@ -143,7 +143,7 @@ module.exports = {
         password,
       });
       const userId = snapshot.id;
-      return {id:userId};
+      return { id: userId };
     },
     verifyOTP: async (_, args, context, info) => {
       const snapshot = await verifyRef.where("phone", "==", args.phone).get();
@@ -167,7 +167,7 @@ module.exports = {
           .doc(verifyId)
           .delete();
       }
-      return {res:verified};
+      return { res: verified };
     },
     changePassword: async (_, args, { req }, info) => {
       if (req.isAuth) {
@@ -176,9 +176,9 @@ module.exports = {
         const updatePass = await db.collection("Users").doc(req.userId).update({
           password,
         });
-        return {res:changed};
+        return { res: changed };
       } else {
-        return {message:"Please Login!!!"};
+        return { message: "Please Login!!!" };
       }
     },
     addAddress: async (_, args, { req }, info) => {
@@ -199,7 +199,7 @@ module.exports = {
           ...addressSnapshot.data(),
         };
       } else {
-        return {message:"Please Login!!!"};
+        return { message: "Please Login!!!" };
       }
     },
     deleteAddress: async (_, args, { req }, info) => {
@@ -214,9 +214,9 @@ module.exports = {
           .update({
             address: admin.firestore.FieldValue.arrayRemove(args.addressId),
           });
-        return {res:true};
+        return { res: true };
       } else {
-        return {message:"Please Login!!!"};
+        return { message: "Please Login!!!" };
       }
     },
     addToWishlist: async (_, args, { req }, info) => {
@@ -227,9 +227,9 @@ module.exports = {
           .update({
             wishlist: admin.firestore.FieldValue.arrayUnion(args.productId),
           });
-        return {res:true};
+        return { res: true };
       } else {
-        return {message:"Please Login!!!"};
+        return { message: "Please Login!!!" };
       }
     },
     removeFromWishlist: async (_, args, { req }, info) => {
@@ -240,9 +240,9 @@ module.exports = {
           .update({
             wishlist: admin.firestore.FieldValue.arrayRemove(args.productId),
           });
-        return {res:true};
+        return { res: true };
       } else {
-        return {message:"Please Login!!!"};
+        return { message: "Please Login!!!" };
       }
     },
     updateAddress: async (_, args, { req }, info) => {
@@ -250,13 +250,13 @@ module.exports = {
         const updateAddress = await db.collection("Address").doc(args.addressId).update({
           ...args.input
         });
-        return {res:true};
+        return { res: true };
       } else {
-        return {message:"Please Login!!!"};
+        return { message: "Please Login!!!" };
       }
     },
     addCard: async (_, args, { req }, info) => {
-      if (req.isAuth){
+      if (req.isAuth) {
         const exp = args.input.expires;
         const paymentMethod = await stripe.paymentMethods.create({
           type: 'card',
@@ -270,17 +270,17 @@ module.exports = {
         const userData = userSnapshot.data();
         const cards = userData.cards;
         let added = false;
-        for (var i = 0; i <cards.length; i++) {
+        for (var i = 0; i < cards.length; i++) {
           const cardSnapshot = await db.collection("Cards").doc(cards[i]).get();
           const cardsData = cardSnapshot.data();
           console.log(cardsData);
           const fingerprint = cardsData.fingerprint;
-          if(paymentMethod.card.fingerprint === fingerprint) {
+          if (paymentMethod.card.fingerprint === fingerprint) {
             added = true;
           }
         }
-        if(added) {
-          return {message:"Card Already Added!!!"}
+        if (added) {
+          return { message: "Card Already Added!!!" }
         }
         const newCard = await cardRef.add({
           ...args.input,
@@ -300,7 +300,7 @@ module.exports = {
           ...cardSnapshot.data(),
         };
       } else {
-        return {message:"Please Login!!!"}
+        return { message: "Please Login!!!" }
       }
     },
     deleteCard: async (_, args, { req }, info) => {
@@ -315,27 +315,33 @@ module.exports = {
           .update({
             cards: admin.firestore.FieldValue.arrayRemove(args.cardId),
           });
-        return {res:true};
+        return { res: true };
       } else {
-        return {message:"Please Login!!!"};
+        return { message: "Please Login!!!" };
       }
     },
-    updateUser: async (_, args,{req}, info) => {
+    updateUser: async (_, args, { req }, info) => {
       if (req.isAuth) {
+        const tempSnapshot = await userRef
+          .where("email", "==", args.input.email)
+          .get();
+        if (!tempSnapshot.empty) {
+          return { message: "Email already exis}s!!!" };
+        }
         const updateUser = await db.collection("Users").doc(req.userId).update({
           ...args.input
         });
-        
-        return {res:true};
+
+        return { res: true };
       } else {
-        return {message:"Please Login!!!"};
+        return { message: "Please Login!!!" };
       }
     }
   },
   User: {
     address: async (parent) => {
       const res = [];
-      if(parent.address === undefined) {
+      if (parent.address === undefined) {
         return res;
       }
       const address = parent.address;
@@ -354,7 +360,7 @@ module.exports = {
     },
     wishlist: async (parent) => {
       const res = [];
-      if(parent.wishlist === undefined) {
+      if (parent.wishlist === undefined) {
         return res;
       }
       const wishlist = parent.wishlist;
@@ -373,7 +379,7 @@ module.exports = {
     },
     cards: async (parent) => {
       const res = [];
-      if(parent.cards === undefined) {
+      if (parent.cards === undefined) {
         return res;
       }
       const cards = parent.cards;
@@ -393,7 +399,7 @@ module.exports = {
     orders: async (parent) => {
       const orders = parent.orders;
       var res = [];
-      if(orders.length <=0 || orders === undefined || orders === null) {
+      if (orders.length <= 0 || orders === undefined || orders === null) {
         return res;
       }
       for (let index = 0; index < orders.length; index++) {
