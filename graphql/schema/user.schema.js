@@ -106,7 +106,7 @@ module.exports = {
     addCard(input:CardInput): CardResult
     deleteCard(cardId: String!): BooleanResult
     signUp(input: SignupInput): SignupResult
-    verifyOTP(phone: String!,otp: Int!): BooleanResult
+    verifyOTP(phone: String!,otp: String!): BooleanResult
     changePassword(password: String!): BooleanResult
     addAddress(input: AddressInput): AddressResult
     updateAddress(input: AddressInput,addressId: String!): BooleanResult
@@ -114,5 +114,6 @@ module.exports = {
     addToWishlist(productId: String!) : BooleanResult
     removeFromWishlist(productId: String!): BooleanResult
     updateUser(input: UserInput): BooleanResult
+    generateOTP(phone: String!): String!
 `
 };

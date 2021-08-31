@@ -169,6 +169,20 @@ module.exports = {
       }
       return { res: verified };
     },
+    generateOTP: async (_, args, { req }, info) => {
+      var digits = '0123456789';
+      let OTP = '';
+      for (let i = 0; i < 4; i++) {
+        OTP += digits[Math.floor(Math.random() * 10)];
+      }
+      const otpSnap = await verifyRef.add({
+        otp: OTP,
+        phone: args.phone,
+        userId: req.userId
+      });
+      return  OTP;
+    }
+    ,
     changePassword: async (_, args, { req }, info) => {
       if (req.isAuth) {
         let changed = true;
@@ -328,7 +342,7 @@ module.exports = {
         const userSnapshot = await db.collection("Users").doc(req.userId).get();
         const userData = userSnapshot.data();
         if (!tempSnapshot.empty) {
-          if(userData.email !== args.input.email) {
+          if (userData.email !== args.input.email) {
             return { message: "Email already exists!!!" };
           }
         }
