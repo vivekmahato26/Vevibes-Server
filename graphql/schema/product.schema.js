@@ -3,7 +3,7 @@ module.exports = {
     type Product {
         id: ID!
         name: String!
-        description: String!
+        description: Description!
         price: Float!
         salePrice: Float
         img: [String]
@@ -22,9 +22,17 @@ module.exports = {
         featuredImg: String
         brand: String
     }
+    type Description {
+      desc: String!
+      subDesc: [String]
+    }
+    input DescriptionInput {
+      desc: String!
+      subDesc: [String]
+    }
     input ProductInput {
         name: String!
-        description: String!
+        description: DescriptionInput!
         price: Float!
         salePrice: Float
         img: [String]
@@ -52,11 +60,11 @@ module.exports = {
     input NutritionInput {
       name: String!
       percentage: Float
-      value: String!
+      value: Float!
     }
     input ProductUpdate {
         name: String
-        description: String
+        description: DescriptionInput
         price: Float
         salePrice: Float
         tags: [String]
