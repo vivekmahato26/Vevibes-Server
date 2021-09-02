@@ -41,7 +41,7 @@ module.exports = {
       };
       return res;
     },
-    getFeaturedProducts: async (_, args, context, info) => {
+    getFeaturedProducts: async (_, args, {req}, info) => {
       const {limit,cursor} = req.query;
       let cursorSnapshot;
       if(cursor) {
