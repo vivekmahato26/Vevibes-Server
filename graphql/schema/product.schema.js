@@ -11,8 +11,8 @@ module.exports = {
         coupon: String
         stock: Int
         weightKG: Float
-        ingredients: [String!]
-        nutritionalValues: Nutrition
+        ingredients: String!
+        nutritionalValues: [Nutrition]
         allergen: String
         disclaimer: String
         featured: Boolean!
@@ -32,8 +32,8 @@ module.exports = {
         coupon: String
         stock: Int
         weightKG: Float!
-        ingredients: [String!]
-        nutritionalValues: NutritionInput
+        ingredients: String!
+        nutritionalValues: [NutritionInput]
         allergen: String
         disclaimer: String
         featured: Boolean!
@@ -44,25 +44,15 @@ module.exports = {
         brand: String
     }
     type Nutrition {
-        energy: Float
-        fat: Float
-        saturatedFat: Float
-        carbohydrates: Float
-        protien: Float
-        sugar: Float
-        fiber: Float
-        salt: Float
+        name: String!
+        percentage: Float
+        value: String!
     }
    
     input NutritionInput {
-        energy: Float
-        fat: Float
-        saturatedFat: Float
-        carbohydrates: Float
-        protien: Float
-        sugar: Float
-        fiber: Float
-        salt: Float
+      name: String!
+      percentage: Float
+      value: String!
     }
     input ProductUpdate {
         name: String
@@ -74,8 +64,8 @@ module.exports = {
         coupon: String
         stock: Int
         weightKG: Float
-        ingredients: [String]
-        nutritionalValues: NutritionInput
+        ingredients: String
+        nutritionalValues: [NutritionInput]
         allergen: String
         disclaimer: String
         featured: Boolean
@@ -94,7 +84,7 @@ module.exports = {
     `,
   query: `
         getProducts: ProductsResult
-        getProductFromID(productId: String!): ProductResult
+        getProductFromID(productId: String!): Product
         getFeaturedProducts: ProductsResult
         checkWishlisted(productId: String!): BooleanResult!
     `,

@@ -10,8 +10,9 @@ module.exports = {
             user: User
             createdAt: String!
             active: Boolean!
-            discount: String!
-            percent: String!
+            discount: Float!
+            percent: Float
+            minCart: Float
         }
 
         input CouponInput {
@@ -23,13 +24,15 @@ module.exports = {
             user: String
             createdAt: String!
             active: Boolean!
-            discount: String!
-            percent: String!
+            discount: Float!
+            percent: Float
+            minCart: Float
         }
     `,
     Query: `
         getCoupons: [Coupon]
         getUserCoupons: [Coupon]
+        checkCoupon(code: String!): [Coupon]
     `,
     Mutation: `
         addCoupon(input: CouponInput) : Coupon 

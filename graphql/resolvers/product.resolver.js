@@ -7,8 +7,19 @@ const stripe = require("../../stripe");
 
 module.exports = {
   Query: {
-    getProducts: async (_, args, context, info) => {
-      const productSnapshot = await productRef.get();
+    getProducts: async (_, args, {req}, info) => {
+      const {limit,cursor} = req.query;
+      let cursorSnapshot;
+      if(cursor) {
+        cursorSnapshot = await db.collection("Products").doc(cursor).get();
+      }
+      var productSnapshot;
+      if(cursor) {
+        productSnapshot = await productRef.orderBy("name").startAfter(cursorSnapshot).limit(parseInt(limit)).get();
+      }
+      else {
+        productSnapshot = await productRef.orderBy("name").limit(parseInt(limit)).get();
+      }
       let res = [];
       productSnapshot.forEach((p) => {
         var productId = p.id;
@@ -31,7 +42,18 @@ module.exports = {
       return res;
     },
     getFeaturedProducts: async (_, args, context, info) => {
-      const productSnapshot = await productRef.where("featured", "==", true).get();
+      const {limit,cursor} = req.query;
+      let cursorSnapshot;
+      if(cursor) {
+        cursorSnapshot = await db.collection("Products").doc(cursor).get();
+      }
+      var productSnapshot;
+      if(cursor) {
+        productSnapshot = await productRef.orderBy("name").where("featured","==",true).startAfter(cursorSnapshot).limit(parseInt(limit)).get();
+      }
+      else {
+        productSnapshot = await productRef.orderBy("name").where("featured","==",true).limit(parseInt(limit)).get();
+      }
       let res = [];
       productSnapshot.forEach((p) => {
         var productId = p.id;

@@ -31,7 +31,19 @@ module.exports = {
 
             })
             return res;
-        }
+        },
+        checkCoupon: async (_, args,{req}, info) => {
+            let res = [];
+            const couponsSnapshot = await couponRef.where("active", "==", true).where("code","==",args.code).get();
+            couponsSnapshot.forEach((coupon) => {
+                res.push({
+                    id: coupon.id,
+                    ...coupon.data()
+                });
+
+            })
+            return res;
+        } 
     },
     Mutation: {
         addCoupon: async (_, args, { req }, info) => {

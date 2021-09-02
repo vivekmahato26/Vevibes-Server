@@ -4,19 +4,9 @@ module.exports = [
     featured: false,
     description:
       "New vegan halloumi style cheese by GreenVie has an authentic flavour thanks to perfect touch of spearmint. It also brings our a really nice texture when grilled for crisp outer layer and a melted chewy inside. Enjoy in salads, use as a burger patty and much more!",
-    indregients: [
-      "Water",
-      "Modified Starch",
-      "Coconut Oil (17%)",
-      "Chicory Root Extract",
-      "Maltodextrine",
-      "Sea Salt",
-      "FABA BEAN PROTEIN",
-      "Sugar",
-      "Spearmint",
-      "Vegan Flavourings",
-      "Acidity Regulator: Glucono-Delta-Lactone, Olive Extract, Vitamin B12.",
-    ],
+    indregients: 
+      "Water Modified Starch Coconut Oil (17%) Chicory Root Extract Maltodextrine Sea Salt FABA BEAN PROTEIN Sugar Spearmint Vegan Flavourings Acidity Regulator: Glucono-Delta-Lactone, Olive Extract, Vitamin B12."
+    ,
     available: false,
     stock: null,
     weightKG: null,
