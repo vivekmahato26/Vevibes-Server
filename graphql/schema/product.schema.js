@@ -60,7 +60,7 @@ module.exports = {
     input NutritionInput {
       name: String!
       percentage: Float
-      value: Float!
+      value: String!
     }
     input ProductUpdate {
         name: String
