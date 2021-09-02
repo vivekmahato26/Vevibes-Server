@@ -97,8 +97,8 @@ module.exports = {
         checkWishlisted(productId: String!): BooleanResult!
     `,
   mutation: `
-        addProduct(input:ProductInput): ProductResult
-        updateProduct(productId: String!,updates:ProductUpdate):ProductResult
+        addProduct(input:ProductInput): Product
+        updateProduct(productId: String!,updates:ProductUpdate):Product
         checkout(amount: Float!,currency: String!,description: String!,paymentMethod: [String!]) : String!
     `,
    
