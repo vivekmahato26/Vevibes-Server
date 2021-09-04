@@ -95,6 +95,7 @@ module.exports = {
         getProductFromID(productId: String!): Product
         getFeaturedProducts: ProductsResult
         checkWishlisted(productId: String!): BooleanResult!
+        getFilteredProducts(filter: String!,type: String!): ProductsResult
     `,
   mutation: `
         addProduct(input:ProductInput): Product

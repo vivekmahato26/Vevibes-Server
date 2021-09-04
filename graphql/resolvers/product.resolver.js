@@ -7,14 +7,31 @@ const stripe = require("../../stripe");
 
 module.exports = {
   Query: {
-    getProducts: async (_, args, {req}, info) => {
-      const {limit,cursor} = req.query;
-      let cursorSnapshot;
-      if(cursor) {
-        cursorSnapshot = await db.collection("Products").doc(cursor).get();
-      }
+    getFilteredProducts: async (_, args, { req }, info) => {
+      const { limit, cursor } = req.query;
       var productSnapshot;
-      if(cursor) {
+      if (cursor) {
+        const cursorSnapshot = await db.collection("Products").doc(cursor).get();
+        productSnapshot = await productRef.where(args.type,"==",args.filter).orderBy("name").startAfter(cursorSnapshot).limit(parseInt(limit)).get();
+      }
+      else {
+        productSnapshot = await productRef.where(args.type,"==",args.filter).orderBy("name").limit(parseInt(limit)).get();
+      }
+      let res = [];
+      productSnapshot.forEach((p) => {
+        var productId = p.id;
+        res.push({
+          id: productId,
+          ...p.data(),
+        });
+      });
+      return { res: res };
+    },
+    getProducts: async (_, args, { req }, info) => {
+      const { limit, cursor } = req.query;
+      var productSnapshot;
+      if (cursor) {
+        const cursorSnapshot = await db.collection("Products").doc(cursor).get();
         productSnapshot = await productRef.orderBy("name").startAfter(cursorSnapshot).limit(parseInt(limit)).get();
       }
       else {
@@ -28,7 +45,7 @@ module.exports = {
           ...p.data(),
         });
       });
-      return {res: res};
+      return { res: res };
     },
     getProductFromID: async (_, args, context, info) => {
       const productSnapshot = await db
@@ -41,18 +58,18 @@ module.exports = {
       };
       return res;
     },
-    getFeaturedProducts: async (_, args, {req}, info) => {
-      const {limit,cursor} = req.query;
+    getFeaturedProducts: async (_, args, { req }, info) => {
+      const { limit, cursor } = req.query;
       let cursorSnapshot;
-      if(cursor) {
+      if (cursor) {
         cursorSnapshot = await db.collection("Products").doc(cursor).get();
       }
       var productSnapshot;
-      if(cursor) {
-        productSnapshot = await productRef.orderBy("name").where("featured","==",true).startAfter(cursorSnapshot).limit(parseInt(limit)).get();
+      if (cursor) {
+        productSnapshot = await productRef.orderBy("name").where("featured", "==", true).startAfter(cursorSnapshot).limit(parseInt(limit)).get();
       }
       else {
-        productSnapshot = await productRef.orderBy("name").where("featured","==",true).limit(parseInt(limit)).get();
+        productSnapshot = await productRef.orderBy("name").where("featured", "==", true).limit(parseInt(limit)).get();
       }
       let res = [];
       productSnapshot.forEach((p) => {
@@ -62,13 +79,13 @@ module.exports = {
           ...p.data(),
         });
       });
-      return {res: res};
+      return { res: res };
     },
     checkWishlisted: async (_, args, { req }, info) => {
       if (req.isAuth) {
         const userSnapshot = await db.collection("Users").doc(req.userId).get();
         const userData = userSnapshot.data();
-        if( userData.wishlist === undefined || userData.wishlist.length <= 0) {
+        if (userData.wishlist === undefined || userData.wishlist.length <= 0) {
           return { message: "Empty Wishlist!!!" }
         }
         const index = userData.wishlist.findIndex((id) => id === args.productId);
@@ -119,7 +136,7 @@ module.exports = {
         const addressSnapshot = await db.collection("Address").doc(userData.address[0]).get();
         const addressData = addressSnapshot.data();
         let customerId;
-        if(userData.stripeId) {
+        if (userData.stripeId) {
           customerId = userData.stripeId;
         } else {
           var customer = await stripe.customers.create({
@@ -136,7 +153,7 @@ module.exports = {
           });
           customerId = customer.id
           const userUpdate = await db.collection("Users").doc(req.userId).update({
-            stripeId:customerId
+            stripeId: customerId
           });
         }
         const paymentIntent = await stripe.paymentIntents.create({
