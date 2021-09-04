@@ -10,12 +10,18 @@ module.exports = {
     getFilteredProducts: async (_, args, { req }, info) => {
       const { limit, cursor } = req.query;
       var productSnapshot;
+      var tempQuery;
+      switch (args.type) {
+        case "category" : tempQuery = productRef.where(args.type,"==",args.filter).orderBy("name"); break;
+        case "tags": case "subCategory": tempQuery = productRef.where(args.type,'array-contains',args.filter).orderBy("name"); break;
+      }
       if (cursor) {
         const cursorSnapshot = await db.collection("Products").doc(cursor).get();
-        productSnapshot = await productRef.where(args.type,"==",args.filter).orderBy("name").startAfter(cursorSnapshot).limit(parseInt(limit)).get();
+        
+        productSnapshot = await tempQuery.startAfter(cursorSnapshot).limit(parseInt(limit)).get();
       }
       else {
-        productSnapshot = await productRef.where(args.type,"==",args.filter).orderBy("name").limit(parseInt(limit)).get();
+        productSnapshot = await tempQuery.limit(parseInt(limit)).get();
       }
       let res = [];
       productSnapshot.forEach((p) => {
