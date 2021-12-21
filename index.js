@@ -38,13 +38,21 @@ const server = new ApolloServer({
 server.applyMiddleware({
   app, path: "/", cors: {
     credentials: true,
-    origin: [
-      "https://vebibes.com",
-      "https://cms.vevibes.com",
-      "https://app.vevibes.com",
-      "http://localhost:3000",
-      "https://hungry-haibt-0ad691.netlify.app/",
-    ]
+    origin: (origin, callback) => {
+      const whitelist = [
+        "https://vebibes.com",
+        "https://cms.vevibes.com",
+        "https://app.vevibes.com",
+        "http://localhost:3000",
+        "https://hungry-haibt-0ad691.netlify.app/",
+      ];
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        console.log(origin);
+        callback(new Error("Blocked By CORS"))
+      }
+    }
   }
 });
 
@@ -93,7 +101,7 @@ async function startApolloServer() {
   //   }
   // });
 
-  await new Promise(resolve => app.listen({ port: process.env.PORT ||4000 }, resolve));
+  await new Promise(resolve => app.listen({ port: process.env.PORT || 4000 }, resolve));
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
   return { server, app };
 }
