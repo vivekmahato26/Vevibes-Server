@@ -6,14 +6,12 @@ const userRef = db.collection("Users");
 const addressRef = db.collection("Address");
 const orderRef = db.collection("Order");
 
-const stripe = require("../../stripe");
-
 module.exports = {
     Query: {
         getOrder: async (_, args, { req }, info) => {
             const orderSnapshot = await db.collection("Order").doc(args.id).get();
             const orderData = orderSnapshot.data();
-            const { status,createdAt } = orderData;
+            const { status, createdAt } = orderData;
             var temp = [];
             for (let i = 0; i < status.length; i++) {
                 temp.push({
@@ -62,7 +60,7 @@ module.exports = {
             } else {
                 throw new Error("Please Login!!!");
             }
-        }
+        },
     },
     Mutation: {
         createOrder: async (_, args, { req }, info) => {
@@ -94,7 +92,7 @@ module.exports = {
             } else {
                 throw new Error("Please Login!!!");
             }
-        }
+        },
     },
     Order: {
         user: async (parent) => {
@@ -112,22 +110,15 @@ module.exports = {
             }
         },
         cart: async (parent) => {
-            const cart = parent.cart;
-            var res = [];
-            for (var i = 0; i < cart.length; i++) {
-                const productSnapshot = await db.collection("Products").doc(cart[i].product).get();
-                const productData = productSnapshot.data();
-                const productId = productSnapshot.id;
-                const temp = {
-                    product: {
-                        id: productId,
-                        ...productData
-                    },
-                    quantity: cart[i].quantity
-                }
-                res.push(temp);
+            const { cart } = parent;
+            if (cart.length <= 0 || cart === undefined || cart === null) {
+                return null;
             }
-            return res;
+            const cartSnapshot = await db.collection("UserCart").doc(cart).get();
+            return {
+                id: cartSnapshot.id,
+                ...cartSnapshot.data()
+            }
         }
-    }
+    },
 }

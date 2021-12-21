@@ -8,16 +8,19 @@ const stripe = require("../../stripe");
 module.exports = {
   Query: {
     getFilteredProducts: async (_, args, { req }, info) => {
-      const { limit, cursor } = req.query;
+      var { limit, cursor } = req.query;
+      if (!limit) {
+        limit = 5;
+      }
       var productSnapshot;
       var tempQuery;
       switch (args.type) {
-        case "category" : tempQuery = productRef.where(args.type,"==",args.filter).orderBy("name"); break;
-        case "tags": case "subCategory": tempQuery = productRef.where(args.type,'array-contains',args.filter).orderBy("name"); break;
+        case "category": tempQuery = productRef.where(args.type, "==", args.filter).orderBy("name"); break;
+        case "tags": case "subCategory": tempQuery = productRef.where(args.type, 'array-contains', args.filter).orderBy("name"); break;
       }
       if (cursor) {
         const cursorSnapshot = await db.collection("Products").doc(cursor).get();
-        
+
         productSnapshot = await tempQuery.startAfter(cursorSnapshot).limit(parseInt(limit)).get();
       }
       else {
@@ -34,7 +37,10 @@ module.exports = {
       return { res: res };
     },
     getProducts: async (_, args, { req }, info) => {
-      const { limit, cursor } = req.query;
+      var { limit, cursor } = req.query;
+      if (!limit) {
+        limit = 5;
+      }
       var productSnapshot;
       if (cursor) {
         const cursorSnapshot = await db.collection("Products").doc(cursor).get();
@@ -65,7 +71,10 @@ module.exports = {
       return res;
     },
     getFeaturedProducts: async (_, args, { req }, info) => {
-      const { limit, cursor } = req.query;
+      var { limit, cursor } = req.query;
+      if (!limit) {
+        limit = 5;
+      }
       let cursorSnapshot;
       if (cursor) {
         cursorSnapshot = await db.collection("Products").doc(cursor).get();
@@ -92,7 +101,7 @@ module.exports = {
         const userSnapshot = await db.collection("Users").doc(req.userId).get();
         const userData = userSnapshot.data();
         if (userData.wishlist === undefined || userData.wishlist.length <= 0) {
-          return { message: "Empty Wishlist!!!" }
+          return { res: false };
         }
         const index = userData.wishlist.findIndex((id) => id === args.productId);
         if (index === -1) {
@@ -103,7 +112,7 @@ module.exports = {
       } else {
         return { message: "Please Login!!!" }
       }
-    }
+    },
   },
   Mutation: {
     addProduct: async (_, args, context, info) => {

@@ -21,6 +21,7 @@ module.exports = {
         createdAt: String!
         featuredImg: String
         brand: String
+        chilled: Boolean!
     }
     type Description {
       desc: String!
@@ -50,13 +51,14 @@ module.exports = {
         createdAt: String!
         featuredImg: String
         brand: String
+        chilled: Boolean!
     }
     type Nutrition {
         name: String!
         percentage: Float
         value: String!
     }
-   
+
     input NutritionInput {
       name: String!
       percentage: Float
@@ -79,6 +81,7 @@ module.exports = {
         featured: Boolean
         featuredImg: String
         brand: String
+        chilled: Boolean!
     }
     type Products {
       res: [Product]

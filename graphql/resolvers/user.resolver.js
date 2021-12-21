@@ -9,6 +9,7 @@ const userRef = db.collection("Users");
 const verifyRef = db.collection("VerifyUser");
 const addressRef = db.collection("Address");
 const cardRef = db.collection("Cards");
+const cartRef = db.collection("UserCart");
 
 const secret = "QWE123!@#rtyJKL789&*(jkl$%^";
 
@@ -38,7 +39,7 @@ module.exports = {
       }
       const userId = userDoc.id;
       const userData = userDoc.data();
-      const auth = await bcrypt.compareSync(
+      const auth = bcrypt.compareSync(
         args.input.password,
         userData.password
       );
@@ -123,6 +124,37 @@ module.exports = {
       else {
         return { message: "Please Login!!!" }
       }
+    },
+    getUserCart: async (_, args, { req }, info) => {
+      if (req.isAuth) {
+        const userSnapshot = await db.collection("Users").doc(req.userId).get();
+        const userdata = userSnapshot.data();
+        const cart = userdata.cart;
+        if (cart === undefined || cart === null || cart.length <= 0) {
+          return null;
+        }
+        const cartSnapshot = await db.collection("UserCart").doc(cart).get();
+        const cartData = cartSnapshot.data();
+        return {
+          id: cartSnapshot.id,
+          ...cartData
+        }
+      } else {
+        throw new Error("Please Login!!!");
+      }
+    },
+    getSessionCart: async (_, args, { req }, info) => {
+      const { tempUser } = req.query;
+      const sessionCart = await cartRef.where("user", "==", tempUser).get();
+      var sessionCartData = [];
+      sessionCart.forEach((s) => {
+        sessionCartData.push({
+          id: s.id,
+          ...s.data()
+        })
+      })
+      const cartData = sessionCartData[0];
+      return cartData;
     }
   },
   Mutation: {
@@ -180,7 +212,7 @@ module.exports = {
         phone: args.phone,
         userId: req.userId
       });
-      return  OTP;
+      return OTP;
     }
     ,
     changePassword: async (_, args, { req }, info) => {
@@ -353,6 +385,167 @@ module.exports = {
       } else {
         return { message: "Please Login!!!" };
       }
+    },
+    updateUserCart: async (_, args, { req }, info) => {
+      var userId;
+      var res;
+      if (req.isAuth) {
+        userId = req.userId;
+        const userSnapshot = await db.collection("Users").doc(userId).get();
+        const { cart } = userSnapshot.data();
+
+        if (cart) {
+          const cartSnapshot = await db.collection("UserCart").doc(cart).get();
+          const cartData = cartSnapshot.data();
+          const { items } = cartData;
+          items.map(async (item) => {
+            if (item.product === args.input.items.product) {
+              if (args.input.items.quantity === 0) {
+                const cartUpdateRemove = await db.collection("UserCart").doc(cart).update({
+                  items: admin.firestore.FieldValue.arrayRemove(item)
+                });
+                var newCartAfterRemove = await db.collection("UserCart").doc(cart).get();
+                const newCartData = newCartAfterRemove.data();
+                if (newCartData.items.length === 0) {
+                  const cartUpdateRemove = await db.collection("UserCart").doc(cart).delete();
+                  const userUpdate1 = await db.collection("Users").doc(userId).update({
+                    cart: null
+                  });
+                }
+                return;
+              }
+              const cartUpdate = await db.collection("UserCart").doc(cart).update({
+                items: admin.firestore.FieldValue.arrayRemove(item)
+              })
+              const cartUpdateAdd = await db.collection("UserCart").doc(cart).update({
+                items: admin.firestore.FieldValue.arrayUnion(args.input.items),
+                chilled: args.input.chilled,
+                total: args.input.total,
+                delivery: args.input.delivery
+              })
+            }
+            else {
+              const cartUpdate = await db.collection("UserCart").doc(cart).update({
+                items: admin.firestore.FieldValue.arrayUnion(args.input.items),
+                chilled: args.input.chilled,
+                total: args.input.total,
+                delivery: args.input.delivery
+              })
+            }
+          })
+          const cartSnapshot1 = await db.collection("UserCart").doc(cart).get();
+          res = {
+            id: cartSnapshot1.id,
+            ...cartSnapshot1.data()
+          }
+        }
+        else {
+          const newCart = await cartRef.add({
+            items: admin.firestore.FieldValue.arrayUnion(args.input.items),
+            chilled: args.input.chilled,
+            total: args.input.total,
+            delivery: args.input.delivery,
+            user: userId,
+            hasUser: true,
+            completed: false
+          })
+          const newCartSnapshot = await newCart.get();
+          const userUpdate = await db.collection("Users").doc(userId).update({
+            cart: newCartSnapshot.id
+          });
+          console.log(userUpdate.writeTime);
+          res = {
+            id: newCartSnapshot.id,
+            ...newCartSnapshot.data()
+          }
+        }
+      } else {
+        const { tempUser } = req.query;
+        const sessionCart = await cartRef.where("user", "==", tempUser).get();
+        if (sessionCart.empty) {
+          const newCart = await cartRef.add({
+            items: admin.firestore.FieldValue.arrayUnion(args.input.items),
+            chilled: args.input.chilled,
+            total: args.input.total,
+            delivery: args.input.delivery,
+            user: tempUser,
+            hasUser: false,
+            completed: false
+          })
+          const newCartSnapshot = await newCart.get();
+          res = {
+            id: newCartSnapshot.id,
+            ...newCartSnapshot.data()
+          }
+        }
+        else {
+          var sessionCartData = [];
+          sessionCart.forEach((s) => {
+            sessionCartData.push({
+              id: s.id,
+              ...s.data()
+            })
+          })
+          const cartData = sessionCartData[0];
+          const cart = cartData.id;
+          const { items } = cartData;
+          items.map(async (item) => {
+            if (item.product === args.input.items.product) {
+              if (args.input.items.quantity === 0) {
+                const cartUpdateRemove = await db.collection("UserCart").doc(cart).update({
+                  items: admin.firestore.FieldValue.arrayRemove(item)
+                });
+                var newCartAfterRemove = await db.collection("UserCart").doc(cart).get();
+                const newCartData = newCartAfterRemove.data();
+                if (newCartData.items.length === 0) {
+                  const cartUpdateRemove = await db.collection("UserCart").doc(cart).delete();
+                }
+                return;
+              }
+              const cartUpdate = await db.collection("UserCart").doc(cart).update({
+                items: admin.firestore.FieldValue.arrayRemove(item)
+              })
+              const cartUpdateAdd = await db.collection("UserCart").doc(cart).update({
+                items: admin.firestore.FieldValue.arrayUnion(args.input.items),
+                chilled: args.input.chilled,
+                total: args.input.total,
+                delivery: args.input.delivery
+              })
+            }
+            else {
+              const cartUpdate = await db.collection("UserCart").doc(cart).update({
+                items: admin.firestore.FieldValue.arrayUnion(args.input.items),
+                chilled: args.input.chilled,
+                total: args.input.total,
+                delivery: args.input.delivery
+              })
+            }
+          })
+          const cartSnapshot1 = await db.collection("UserCart").doc(cart).get();
+          res = {
+            id: cartSnapshot1.id,
+            ...cartSnapshot1.data()
+          }
+        }
+
+      }
+      return res;
+    },
+    clearCart: async (_, args, { req }, info) => {
+      if (req.isAuth) {
+        const cartData = await db.collection("UserCart").doc(args.cartId).update({
+          complete: true,
+        });
+        const updateUser = await db.collection("Users").doc(req.userId).update({
+          cart: null
+        });
+        return {
+          res: true
+        }
+      }
+      else {
+        return { message: "Please Login!!!" }
+      }
     }
   },
   User: {
@@ -424,6 +617,37 @@ module.exports = {
         res.push({
           id: orderSnapshot.id,
           ...orderSnapshot.data()
+        })
+      }
+      return res;
+    },
+    cart: async (parent) => {
+      const { cart } = parent;
+      if (cart.length <= 0 || cart === undefined || cart === null) {
+        return null;
+      }
+      const cartSnapshot = await db.collection("UserCart").doc(cart).get();
+      return {
+        id: cartSnapshot.id,
+        ...cartSnapshot.data()
+      }
+    }
+  },
+  UserCart: {
+    items: async (parent) => {
+      const { items } = parent;
+      const res = [];
+      for (let i = 0; i < items.length; i++) {
+        const productShanpshot = await db.collection("Products").doc(items[i].product).get();
+        const productId = productShanpshot.id;
+        const productsData = productShanpshot.data();
+        res.push({
+          product: {
+            id: productId,
+            ...productsData
+          },
+          quantity: items[i].quantity,
+          price: items[i].price
         })
       }
       return res;

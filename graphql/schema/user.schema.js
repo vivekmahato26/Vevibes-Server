@@ -13,12 +13,41 @@ module.exports = {
       stripeId: String!
       orders: [Order]
       image: String
+      cart: UserCart
+    }
+
+    type UserCart {
+      id: String!
+      items: [CartItem]
+      chilled: Boolean!
+      total: Float!
+      delivery: Float
+      completed: Boolean!
+    }
+
+    type CartItem {
+      product: Product!
+      quantity: Int!
+      price: Float!
+    }
+
+    input CartItemInput {
+      product: String!
+      quantity: Int!
+      price: Float!
+    }
+    input UserCartInput {
+      chilled: Boolean!
+      total: Float!
+      delivery: Float!
+      items: CartItemInput
     }
 
     input SignupInput {
       name: String!
       email: String!
       password: String!
+      phone: String
     }
 
     type Auth {
@@ -101,6 +130,8 @@ module.exports = {
       getUser: UserResult
       getWishlist: ProductsResult
       getCards: CardsResult
+      getUserCart: UserCart
+      getSessionCart: UserCart
 `,
   mutation: `
     addCard(input:CardInput): CardResult
@@ -115,5 +146,7 @@ module.exports = {
     removeFromWishlist(productId: String!): BooleanResult
     updateUser(input: UserInput): BooleanResult
     generateOTP(phone: String!): String!
+    updateUserCart(input: UserCartInput): UserCart
+    clearCart(cartId: String!): BooleanResult
 `
 };

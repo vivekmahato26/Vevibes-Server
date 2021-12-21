@@ -29,5 +29,6 @@ module.exports = {
   UsersResult:UserResolver.UsersResult,
   SignupResult:UserResolver.SignupResult,
   ProductResult: ProductResolver.ProductResult,
-  Coupon: CouponResolver.Coupon
+  Coupon: CouponResolver.Coupon,
+  UserCart: UserResolver.UserCart,
 };

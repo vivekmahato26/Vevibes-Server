@@ -1,13 +1,5 @@
 module.exports = {
     rootScheme: `
-        type Cart {
-            product: Product
-            quantity: Int!
-        }
-        input CartInput {
-            product: String!
-            quantity: Int!
-        }
         type Order {
             id: ID!
             address: Address!
@@ -18,9 +10,8 @@ module.exports = {
             paymentStatus: String!
             shipment: [Shipment]
             lable: [Lable]
-            cart: [Cart]
-            coupon: String
-            cartValue: Float!
+            cart: UserCart
+            delivery: Float!
         }
         type Shipment {
             shipment_id: String!
@@ -92,9 +83,8 @@ module.exports = {
             paymentStatus: String!
             shipment: [ShipmentInput]
             lable: [LableInput]
-            cart: [CartInput]
-            coupon: String
-            cartValue: Float!
+            cart: String!
+            delivery: Float!
         }
         type Status {
             updatedAt: String!
