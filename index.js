@@ -41,21 +41,22 @@ async function startApolloServer() {
   server.applyMiddleware({
     app, path: "/", cors: {
       credentials: true,
-      origin: (origin, callback) => {
-        const whitelist = [
-          "https://vebibes.com",
-          "https://cms.vevibes.com",
-          "https://app.vevibes.com",
-          "http://localhost:3000",
-          "https://hungry-haibt-0ad691.netlify.app/",
-        ];
-        if (whitelist.indexOf(origin) !== -1) {
-          callback(null, true);
-        } else {
-          console.log(origin);
-          callback(new Error("Blocked By CORS"))
-        }
-      }
+      // origin: (origin, callback) => {
+      //   const whitelist = [
+      //     "https://vebibes.com",
+      //     "https://cms.vevibes.com",
+      //     "https://app.vevibes.com",
+      //     "http://localhost:3000",
+      //     "https://hungry-haibt-0ad691.netlify.app/",
+      //   ];
+      //   if (whitelist.indexOf(origin) !== -1) {
+      //     callback(null, true);
+      //   } else {
+      //     console.log(origin);
+      //     callback(new Error("Blocked By CORS"))
+      //   }
+      // }
+      origin: "*"
     }
   });
 
